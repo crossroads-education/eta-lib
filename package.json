@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Standard helpers and interfaces used by Eta.",
   "homepage": "http://github.com/crossroads-education/eta-lib/",
+  "repository": "git://github.com:crossroads-education/eta-lib.git",
   "license": "MIT",
   "author": {
     "name": "Alex Hicks",
