@@ -1,15 +1,18 @@
 {
-    "name": "eta-lib",
-    "version": "0.0.1",
-    "description": "Standard helpers and interfaces used by Eta.",
-    "homepage": "http://gitlab.com/crossroads/eta-lib/",
-    "license": "UNLICENSED",
-    "author": {
-        "name": "Alex Hicks",
-        "email": "alex@alexhicks.net",
-        "url": "http://alexhicks.net"
-    },
-    "contributors": [],
-    "main": "./index.js",
-    "private": true
+  "name": "eta-lib",
+  "version": "0.0.1",
+  "description": "Standard helpers and interfaces used by Eta.",
+  "homepage": "http://gitlab.com/crossroads/eta-lib/",
+  "license": "UNLICENSED",
+  "author": {
+    "name": "Alex Hicks",
+    "email": "alex@alexhicks.net",
+    "url": "http://alexhicks.net"
+  },
+  "contributors": [],
+  "main": "./index.js",
+  "private": true,
+  "dependencies": {
+    "stack-trace": "0.0.9"
+  }
 }
