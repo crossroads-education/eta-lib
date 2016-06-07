@@ -1,6 +1,7 @@
 import "../autoload";
 
 import * as fs from "fs";
+import * as mysql from "mysql";
 import * as stackTrace from "stack-trace";
 
 export class Logger {
@@ -30,8 +31,8 @@ export class Logger {
         fs.appendFile(filename, msg + "\n");
     }
 
-    public dbError(err : Error) : void {
-        this.log(`[DBERR] ${err.message}`);
+    public dbError(err : mysql.IError) : void {
+        this.log(`[DBERR] (${err.code}) ${err.message}`);
     }
 
     public json(obj : any) : void {

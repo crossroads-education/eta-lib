@@ -13,6 +13,7 @@
   "contributors": [],
   "main": "./index.js",
   "dependencies": {
+    "mysql": "^2.10.2",
     "stack-trace": "0.0.9"
   },
   "engines": {
