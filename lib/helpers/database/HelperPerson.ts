@@ -13,10 +13,18 @@ export class HelperPerson {
         });
     }
 
+    /**
+    Gets a person by their unique ID.
+    Returns null on failure or not found.
+    */
     public static getByID(id : string, callback : (person : eta.Person) => void) : void {
         HelperPerson.getInternal("WHERE `id` = ?", [id], callback);
     }
 
+    /**
+    Gets a person by their unique username.
+    Returns null on failure or not found.
+    */
     public static getByUsername(username : string, callback : (person : eta.Person) => void) : void {
         HelperPerson.getInternal("WHERE `username` = ?", [username], callback);
     }
