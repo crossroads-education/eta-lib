@@ -2,7 +2,7 @@ import * as eta from "../../../index";
 
 export interface Section {
     /**
-    unique id of the section
+    Unique numeric ID. NOT section number.
     */
     id : number;
 
@@ -11,51 +11,43 @@ export interface Section {
     */
     course : eta.Course;
 
+    /**
+    Not incredibly sure what this signifies, but it's in IU's database for some reason.
+    */
     active : boolean;
 
     /**
-    where its happening
+    The location of the class.
     */
-
     room : string;
 
     /**
-    the maximum number of people
+    The max number of people enrolled
     */
-
     maximumEnrollment : number;
 
     /**
-    current enrolled students
+    Students currently enrolled
     */
-
     totalEnrollment : number;
 
     /**
-    how many credit hours the class is
+    Credit hours
     */
-
     creditHours : number;
 
     /**
-    what the section number is
+    Section number
     */
-
-    sectionNumber : string;
+    number : string;
 
     /**
-    term (spring, fall, summer 1/2)
+    Term the section was in
     */
-
     term : eta.Term;
 
     /**
-    subject code
+    Should be WEB or LEC.
     */
-
-    subject : string;
-
-    number : string;
-
     meetingType : string;
 }
