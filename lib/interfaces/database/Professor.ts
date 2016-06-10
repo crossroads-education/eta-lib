@@ -1,6 +1,6 @@
 import * as eta from "../../../index";
 
-export interface Professor extends eta.Person{
-
-    courses : eta.Course[];
+export interface Professor {
+    id : string;
+    sections : eta.Section[];
 }

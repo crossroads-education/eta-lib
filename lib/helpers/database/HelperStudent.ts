@@ -3,18 +3,7 @@ import * as eta from "../../../index";
 export class HelperStudent {
 
     public static get(id : string, callback : (student : eta.Student) => void) : void {
-        let query : string = `
-        SELECT
-            \`Section\`.*,
-            Course.id AS "cid",
-            Course.subject AS "csubject",
-            Course.number AS "cnumber",
-            Course.supported AS "csupported",
-            Course.center AS "ccenter",
-            Course.tutor AS "ctutor",
-            Course.room AS "croom"
-        FROM
-            StudentSection, Course, Section
+        let query : string = eta.section.builderQuery + `
         WHERE
             StudentSection.student = ? AND
             Section.id = StudentSection.section AND
@@ -27,26 +16,7 @@ export class HelperStudent {
                 return;
             }
             for( let i in rows ) {
-                (<eta.Section[]>rows)[i] = {
-                    "course" : {
-                        "id" : rows[i].cid,
-                        "isSupported" : rows[i].csupported == 1,
-                        "center" : rows[i].ccenter,
-                        "number" : rows[i].cnumber,
-                        "subject" : rows[i].csubject,
-                        "tutor" : rows[i].ctutor,
-                        "room" : rows[i].croom
-                    },
-                    "id" : rows[i].id,
-                    "active" : rows[i].active == 1,
-                    "room" : rows[i].room,
-                    "maximumEnrollment" : rows[i].maximumEnrollment,
-                    "totalEnrollment" : rows[i].totalEnrollment,
-                    "creditHours" : rows[i].creditHours,
-                    "number" : rows[i].number,
-                    "term" : eta.term.get(rows[i].term),
-                    "meetingType" : rows[i].meetingType,
-                }
+                rows[i] = eta.section.build(rows[i]);
             }
             callback( {
                 "id" : id,
