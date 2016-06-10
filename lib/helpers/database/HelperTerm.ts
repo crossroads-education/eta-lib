@@ -22,6 +22,15 @@ export class HelperTerm {
         });
     }
 
+    public static get(id : number) : eta.Term {
+        for (let i : number = 0; i < HelperTerm.terms.length; i++) {
+            if (HelperTerm.terms[i].id == id) {
+                return HelperTerm.terms[i];
+            }
+        }
+        return null;
+    }
+
     /**
     Returns whatever term we're currently in, or null if we're in between terms.
     */
