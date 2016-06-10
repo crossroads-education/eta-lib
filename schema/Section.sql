@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `Section` (
     `creditHours` INT(4) NOT NULL,
     `maximumEnrolled` INT(4) NOT NULL,
     `meetingType` CHAR(3) NOT NULL,
+    `number` INT(8) NOT NULL,
     `room` VARCHAR(10) NOT NULL,
     `term` INT(8) NOT NULL,
     `totalEnrolled` INT(4) NOT NULL,
