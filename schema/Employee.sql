@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS `Employee` (
+    `id` CHAR(10) NOT NULL,
+    `altEmail` VARCHAR(63) NOT NULL,
+    `badgeName` VARCHAR(63) NOT NULL,
+    `biography` TEXT NOT NULL,
+    `current` TINYINT(1) NOT NULL,
+    `emergencyName` VARCHAR(63) NOT NULL,
+    `emergencyPhone` VARCHAR(15) NOT NULL,
+    `emergencyRelationship` VARCHAR(31) NOT NULL,
+    `international` TINYINT(1) NOT NULL,
+    `maxHours` INT(4) NOT NULL,
+    `minHours` INT(4) NOT NULL,
+    `notes` TEXT NOT NULL,
+    `phone` VARCHAR(15) NOT NULL,
+    `shirt` CHAR(2) NOT NULL,
+PRIMARY KEY(`id`));

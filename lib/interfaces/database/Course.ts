@@ -1,7 +1,7 @@
 export interface Course {
     id : number;
     isSupported : boolean;
-    location : string;
+    center : number;
     number : string;
     subject : string;
     tutor : string;

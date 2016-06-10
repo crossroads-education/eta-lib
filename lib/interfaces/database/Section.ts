@@ -2,15 +2,15 @@ import * as eta from "../../../index";
 
 export interface Section {
     /**
+    unique id of the section
+    */
+    id : number;
+
+    /**
     What type of course the Section is, (less specific, think square -> rectangle)
     */
     course : eta.Course;
 
-    /**
-    unique id of the section
-    */
-
-    id : number;
     active : boolean;
 
     /**
@@ -56,6 +56,6 @@ export interface Section {
     subject : string;
 
     number : string;
-    
+
     meetingType : string;
 }
