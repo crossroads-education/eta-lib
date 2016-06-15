@@ -22,6 +22,7 @@ export {HelperCenter as center} from "./lib/helpers/database/HelperCenter";
 export {HelperMetadata as metadata} from "./lib/helpers/database/HelperMetadata";
 export {HelperPerson as person} from "./lib/helpers/database/HelperPerson";
 export {HelperSection as section} from "./lib/helpers/database/HelperSection";
+export {HelperSetting as setting} from "./lib/helpers/database/HelperSetting";
 export {HelperStudent as student} from "./lib/helpers/database/HelperStudent";
 export {HelperTerm as term} from "./lib/helpers/database/HelperTerm";
 
@@ -32,6 +33,7 @@ export {Course} from "./lib/interfaces/database/Course";
 export {PageMetadata} from "./lib/interfaces/database/PageMetadata";
 export {Person} from "./lib/interfaces/database/Person";
 export {Section} from "./lib/interfaces/database/Section";
+export {Setting} from "./lib/interfaces/database/Setting";
 export {Student} from "./lib/interfaces/database/Student";
 export {StudentSection} from "./lib/interfaces/database/StudentSection";
 export {Term} from "./lib/interfaces/database/Term";
