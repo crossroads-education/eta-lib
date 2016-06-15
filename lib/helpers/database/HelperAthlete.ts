@@ -4,7 +4,7 @@ export class HelperAthlete{
     /**
     Returns null if they're not an athlete or a database error occurs
     */
-    public static get(id : string, callback : (athlete : eta.Athlete) => void) : void {
+        public static isAthlete(id : string, callback : (athlete : eta.Athlete) => void) : void {
         let query : string = `
         SELECT
             *

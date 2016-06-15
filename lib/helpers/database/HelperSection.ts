@@ -9,7 +9,8 @@ export class HelperSection {
         Course.supported AS "csupported",
         Course.center AS "ccenter",
         Course.tutor AS "ctutor",
-        Course.room AS "croom"
+        Course.room AS "croom",
+        Course.fee AS "cfee"
     FROM
         StudentSection, Course, Section`;
     public static get(id : number, callback : (section : eta.Section) => void) : void {
@@ -41,7 +42,8 @@ export class HelperSection {
                 "number" : row.cnumber,
                 "subject" : row.csubject,
                 "tutor" : row.ctutor,
-                "room" : row.croom
+                "room" : row.croom,
+                "fee" : row.fee
             },
             "id" : row.id,
             "active" : row.active == 1,

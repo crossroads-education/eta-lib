@@ -5,4 +5,6 @@ export interface StudentSection {
     student : string;
 
     section : number;
+
+    dropDate : Date;
 }

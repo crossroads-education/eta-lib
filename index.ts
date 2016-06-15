@@ -19,6 +19,7 @@ export {HelperObject as object} from "./lib/helpers/HelperObject";
 // *** database helpers ***
 export {HelperAthlete as athlete} from "./lib/helpers/database/HelperAthlete";
 export {HelperCenter as center} from "./lib/helpers/database/HelperCenter";
+export {HelperCourse as course} from "./lib/helpers/database/HelperCourse";
 export {HelperMetadata as metadata} from "./lib/helpers/database/HelperMetadata";
 export {HelperPerson as person} from "./lib/helpers/database/HelperPerson";
 export {HelperSection as section} from "./lib/helpers/database/HelperSection";
@@ -27,7 +28,6 @@ export {HelperStudent as student} from "./lib/helpers/database/HelperStudent";
 export {HelperTerm as term} from "./lib/helpers/database/HelperTerm";
 
 // *** database interfaces ***
-export {Athlete} from "./lib/interfaces/database/Athlete";
 export {Center} from "./lib/interfaces/database/Center";
 export {Course} from "./lib/interfaces/database/Course";
 export {PageMetadata} from "./lib/interfaces/database/PageMetadata";

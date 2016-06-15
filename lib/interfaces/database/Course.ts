@@ -6,4 +6,5 @@ export interface Course {
     subject : string;
     tutor : string;
     room : string;
+    fee : boolean;
 }

@@ -6,4 +6,5 @@ CREATE TABLE IF NOT EXISTS `Course` (
     `center` INT(8) NOT NULL,
     `tutor` VARCHAR(63) NOT NULL,
     `room` CHAR(4) NOT NULL,
+    `fee` TINYINT(1) NOT NULL,
 PRIMARY KEY(`id`));
