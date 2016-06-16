@@ -15,6 +15,7 @@ export {IError as DBError} from "mysql";
 export {HelperFS as fs} from "./lib/helpers/HelperFS";
 export {HelperHttp as http} from "./lib/helpers/HelperHttp";
 export {HelperObject as object} from "./lib/helpers/HelperObject";
+export {HelperParams as params} from "./lib/helpers/HelperParams";
 
 // *** database helpers ***
 export {HelperAthlete as athlete} from "./lib/helpers/database/HelperAthlete";
