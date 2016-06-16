@@ -16,6 +16,7 @@ export {HelperFS as fs} from "./lib/helpers/HelperFS";
 export {HelperHttp as http} from "./lib/helpers/HelperHttp";
 export {HelperObject as object} from "./lib/helpers/HelperObject";
 export {HelperParams as params} from "./lib/helpers/HelperParams";
+export {HelperRedirect as redirect} from "./lib/helpers/HelperRedirect";
 
 // *** database helpers ***
 export {HelperAthlete as athlete} from "./lib/helpers/database/HelperAthlete";
@@ -38,7 +39,6 @@ export {Setting} from "./lib/interfaces/database/Setting";
 export {Student} from "./lib/interfaces/database/Student";
 export {StudentSection} from "./lib/interfaces/database/StudentSection";
 export {Term} from "./lib/interfaces/database/Term";
-
 
 // *** interfaces ***
 export {Model} from "./lib/interfaces/Model";
