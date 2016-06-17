@@ -7,6 +7,7 @@
         "express": "registry:dt/express#4.0.0+20160317120654",
         "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
         "express-session": "registry:dt/express-session#0.0.0+20160331200931",
+        "knex": "registry:dt/knex#0.0.0+20160526133810",
         "mime": "registry:dt/mime#0.0.0+20160316155526",
         "mysql": "registry:dt/mysql#0.0.0+20160316155526",
         "node": "registry:env/node#4.0.0+20160507210304",
