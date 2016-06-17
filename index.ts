@@ -1,3 +1,4 @@
+import * as knexLib from "knex";
 import * as mysql from "mysql";
 
 // *** logger stuff ***
@@ -9,6 +10,7 @@ export {Logger} from "./lib/classes/Logger";
 
 // *** database stuff ***
 export let db : mysql.IConnection;
+export let knex : knexLib;
 export {IError as DBError} from "mysql";
 
 // *** helpers ***
