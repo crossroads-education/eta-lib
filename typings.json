@@ -1,17 +1,17 @@
 {
-    "name": "eta-lib",
-    "version": "0.0.1",
-    "main": "./index.d.ts",
-    "globalDependencies": {
-        "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504",
-        "express": "registry:dt/express#4.0.0+20160317120654",
-        "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
-        "express-session": "registry:dt/express-session#0.0.0+20160331200931",
-        "knex": "registry:dt/knex#0.0.0+20160526133810",
-        "mime": "registry:dt/mime#0.0.0+20160316155526",
-        "mysql": "registry:dt/mysql#0.0.0+20160316155526",
-        "node": "registry:env/node#4.0.0+20160507210304",
-        "serve-static": "registry:dt/serve-static#0.0.0+20160501131543",
-        "stack-trace": "registry:dt/stack-trace#0.0.0+20160316155526"
-    }
+  "name": "eta-lib",
+  "version": "0.0.1",
+  "globalDependencies": {
+    "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504",
+    "express": "registry:dt/express#4.0.0+20160317120654",
+    "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
+    "express-session": "registry:dt/express-session#0.0.0+20160331200931",
+    "knex": "registry:dt/knex#0.0.0+20160526133810",
+    "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "mysql": "registry:dt/mysql#0.0.0+20160316155526",
+    "node": "registry:env/node#4.0.0+20160507210304",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160501131543",
+    "stack-trace": "registry:dt/stack-trace#0.0.0+20160316155526"
+  }
 }
