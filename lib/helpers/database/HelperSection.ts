@@ -54,6 +54,7 @@ export class HelperSection {
             "number" : row.number,
             "term" : eta.term.get(row.term),
             "meetingType" : row.meetingType,
+            "professor" : row.professor
         };
     }
 }

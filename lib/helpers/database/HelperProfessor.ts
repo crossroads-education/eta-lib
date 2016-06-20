@@ -6,10 +6,10 @@ export class HelperProfessor {
         SELECT
             StudentSection.*
         FROM
-            StudentSection, ProfessorSection
+            StudentSection, Section
         WHERE
-            ProfessorSection.professor = ? AND
-            StudentSection.section = ProfessorSection.section
+            Section.professor = ? AND
+            StudentSection.section = Section.id
             `;
         eta.db.query(query, [id], (err : eta.DBError, rows : any []) => {
             if (err) {
@@ -26,10 +26,9 @@ export class HelperProfessor {
         SELECT
             Section.*
         From
-            Section, ProfessorSection
+            Section
         WHERE
-            ProfessorSection.professor = ? AND
-            Section.id = ProfessorSection.section
+            Section.professor = ?
         `;
         eta.db.query(query, [id], (err : eta.DBError, rows : any []) => {
             if (err) {

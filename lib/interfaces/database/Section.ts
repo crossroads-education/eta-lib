@@ -50,4 +50,6 @@ export interface Section {
     Should be WEB or LEC.
     */
     meetingType : string;
+
+    professor : string;
 }
