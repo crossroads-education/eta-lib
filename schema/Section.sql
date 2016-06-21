@@ -10,4 +10,7 @@ CREATE TABLE IF NOT EXISTS `Section` (
     `term` INT(8) NOT NULL,
     `totalEnrolled` INT(4) NOT NULL,
     `professor` CHAR(10) NOT NULL,
+    `start` TIME NOT NULL,
+    `end` TIME NOT NULL,
+    `days` VARCHAR(7) NOT NULL,
 PRIMARY KEY(`id`));

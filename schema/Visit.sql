@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `Visit` (
-    `student` CHAR(32) NOT NULL,
+    `student` CHAR(10) NOT NULL,
     `center` INT(8) NOT NULL,
     `timeIn` DATETIME NOT NULL,
     `timeOut` DATETIME,
