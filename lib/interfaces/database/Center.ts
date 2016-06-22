@@ -1,6 +1,6 @@
 export interface Center {
     id : number;
-    location : string;
+    code : string;
     name : string;
     shorthand : string;
     address : string;
