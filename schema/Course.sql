@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `Course` (
     `number` CHAR(5) NOT NULL,
     `supported` TINYINT(1) NOT NULL,
     `center` INT(8) NOT NULL,
-    `tutor` VARCHAR(63) NOT NULL,
-    `room` CHAR(4) NOT NULL,
+    `tutor` VARCHAR(63),
+    `room` CHAR(4),
     `fee` TINYINT(1) NOT NULL,
 PRIMARY KEY(`id`));
