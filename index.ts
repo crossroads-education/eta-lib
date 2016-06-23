@@ -1,5 +1,9 @@
 import * as knexLib from "knex";
 import * as mysql from "mysql";
+import * as nodemailer from "nodemailer";
+
+// *** nodemailer ***
+export let mail : nodemailer.Transporter;
 
 // *** logger stuff ***
 import {Logger} from "./lib/classes/Logger";
