@@ -2,20 +2,25 @@ import * as knexLib from "knex";
 import * as mysql from "mysql";
 import * as nodemailer from "nodemailer";
 
-// *** nodemailer ***
+// *** Instances ***
+
+// config
+import {Configuration} from "./lib/interfaces/Configuration";
+export let config : Configuration;
+
+// email
 export let mail : nodemailer.Transporter;
 
-// *** logger stuff ***
+// logger
 import {Logger} from "./lib/classes/Logger";
 export let logger : Logger;
 
-// *** classes ***
-export {Logger} from "./lib/classes/Logger";
-
-// *** database stuff ***
+// database
 export let db : mysql.IConnection;
 export let knex : knexLib;
-export {IError as DBError} from "mysql";
+
+// *** classes ***
+export {Logger} from "./lib/classes/Logger";
 
 // *** helpers ***
 export {HelperFS as fs} from "./lib/helpers/HelperFS";
@@ -47,5 +52,8 @@ export {StudentSection} from "./lib/interfaces/database/StudentSection";
 export {Term} from "./lib/interfaces/database/Term";
 
 // *** interfaces ***
+export {Configuration} from "./lib/interfaces/Configuration";
+export {IError as DBError} from "mysql";
 export {Model} from "./lib/interfaces/Model";
+export {ModelParams} from "./lib/interfaces/ModelParams";
 export {ModuleConfiguration} from "./lib/interfaces/ModuleConfiguration";
