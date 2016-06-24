@@ -19,6 +19,10 @@ export class HelperSetting {
     }
 
     public static get(page : string, name : string) : eta.Setting {
+        if (!HelperSetting.settings[page]) {
+            eta.logger.trace("Settings for " + page + " do not exist. (" + name + ")");
+            return null;
+        }
         for (let i : number = 0; i < HelperSetting.settings[page].length; i++) {
             if (HelperSetting.settings[page][i].name == name) {
                 return HelperSetting.settings[page][i];
