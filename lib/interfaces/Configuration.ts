@@ -15,8 +15,14 @@ export interface Configuration {
     dev : {
         use : boolean;
     };
+    email : string;
     http : {
         port : number;
         secret : string;
+    };
+    mail : {
+        host : string;
+        port : number;
+        secure : boolean;
     };
 }
