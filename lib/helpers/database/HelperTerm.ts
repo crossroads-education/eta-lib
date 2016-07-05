@@ -13,7 +13,7 @@ export class HelperTerm {
     */
     public static init() : void {
         HelperTerm.terms = [];
-        eta.db.query("SELECT * FROM `Term`", [], (err : eta.DBError, rows : any[]) => {
+        eta.db.query("SELECT * FROM `Term` WHERE NOT (`term` LIKE '%5' AND `session` = 1)", [], (err : eta.DBError, rows : any[]) => {
             if (err) {
                 eta.logger.dbError(err);
                 return;
