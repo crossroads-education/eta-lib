@@ -5,4 +5,5 @@ CREATE TABLE IF NOT EXISTS `History` (
     `cols` TEXT NOT NULL,
     `params` TEXT NOT NULL,
     `table` TEXT NOT NULL,
+    `raw` TINYINT(1) NOT NULL,
 PRIMARY KEY(`id`));
