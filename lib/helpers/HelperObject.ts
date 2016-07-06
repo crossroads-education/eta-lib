@@ -7,6 +7,9 @@ export class HelperObject {
         if (obj == null || typeof(obj) !== "object") {
             return obj; // any non-objects are passed by value, not reference
         }
+        if (obj instanceof Date) {
+            return new Date(obj.toISOString());
+        }
         let temp : any = new obj.constructor();
         for (let key in obj) {
             temp[key] = HelperObject.copy(obj[key]);
