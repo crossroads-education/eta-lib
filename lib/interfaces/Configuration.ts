@@ -19,6 +19,12 @@ export interface Configuration {
     http : {
         port : number;
         secret : string;
+        ssl : {
+            cert : string;
+            key : string;
+            port : number;
+            use : boolean;
+        };
     };
     mail : {
         host : string;
