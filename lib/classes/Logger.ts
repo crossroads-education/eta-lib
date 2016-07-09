@@ -9,13 +9,11 @@ export class Logger {
 
     public constructor(root : string) {
         this.root = root;
-        fs.access(this.root + "/logs", (err : NodeJS.ErrnoException) => {
-            if (err) {
-                fs.mkdir(this.root + "/logs", (err : NodeJS.ErrnoException) => {
-                    if (err) throw err;
-                });
-            }
-        });
+        try {
+            fs.accessSync(this.root + "/logs");
+        } catch (ex) {
+            fs.mkdirSync(this.root + "/logs");
+        }
     }
 
     private getCalling() : string {
