@@ -3,6 +3,6 @@ CREATE TABLE IF NOT EXISTS `Visit` (
     `center` INT(8) NOT NULL,
     `timeIn` DATETIME NOT NULL,
     `timeOut` DATETIME,
-    `section` INT(8) NOT NULL,
+    `section` TEXT NOT NULL,
     `term` INT(8) NOT NULL,
 PRIMARY KEY(`student`, `timeIn`));
