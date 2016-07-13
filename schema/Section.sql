@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `Section` (
     `maximumEnrolled` INT(4) NOT NULL,
     `meetingType` CHAR(3) NOT NULL,
     `number` INT(8) NOT NULL,
-    `room` VARCHAR(10) NOT NULL,
+    `room` VARCHAR(10),
     `term` INT(8) NOT NULL,
     `totalEnrolled` INT(4) NOT NULL,
     `professor` CHAR(10) NOT NULL,

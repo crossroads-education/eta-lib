@@ -3,4 +3,4 @@ CREATE TABLE IF NOT EXISTS `EmployeePosition` (
     `position` INT(8) NOT NULL,
     `start` DATE NOT NULL,
     `end` DATE,
-PRIMARY KEY(`id`, `position`));
+PRIMARY KEY(`id`, `position`, `start`));
