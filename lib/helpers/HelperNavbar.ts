@@ -1,14 +1,14 @@
 import * as eta from "../../index";
 
 export class HelperNavbar {
-    public static build(data : any, permissions : string[], baseurl : string, isSubmenu : boolean) : string {
+    public static build(data : any, user : eta.PermissionUser, baseurl : string, isSubmenu : boolean) : string {
         let html : string = "";
         let pastFirst : boolean = false;
         for (let name in data) {
             if (name == "permission") {
                 continue;
             }
-            if (data[name].permission && permissions.indexOf(data[name].permission) === -1) {
+            if (data[name].permission && !user.has(data[name].permission)) {
                 continue; // skip when permissions aren't there
             }
             if (data[name].url) { // just a link
@@ -31,7 +31,7 @@ export class HelperNavbar {
                         <ul class="dropdown-menu">
                 `;
             }
-            html += HelperNavbar.build(data[name], permissions, baseurl, true);
+            html += HelperNavbar.build(data[name], user, baseurl, true);
             if (!isSubmenu) {
                 html += "</ul>\n</li>";
             }
