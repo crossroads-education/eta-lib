@@ -21,6 +21,7 @@ export let knex : knexLib;
 
 // *** classes ***
 export {Logger} from "./lib/classes/Logger";
+export {PermissionUser} from "./lib/classes/PermissionUser";
 
 // *** helpers ***
 export {HelperFS as fs} from "./lib/helpers/HelperFS";
@@ -35,6 +36,7 @@ export {HelperAthlete as athlete} from "./lib/helpers/database/HelperAthlete";
 export {HelperCenter as center} from "./lib/helpers/database/HelperCenter";
 export {HelperCourse as course} from "./lib/helpers/database/HelperCourse";
 export {HelperMetadata as metadata} from "./lib/helpers/database/HelperMetadata";
+export {HelperPermission as permission} from "./lib/helpers/database/HelperPermission";
 export {HelperPerson as person} from "./lib/helpers/database/HelperPerson";
 export {HelperSection as section} from "./lib/helpers/database/HelperSection";
 export {HelperSetting as setting} from "./lib/helpers/database/HelperSetting";
