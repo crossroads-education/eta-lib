@@ -9,6 +9,7 @@
     "express-session": "registry:dt/express-session#0.0.0+20160331200931",
     "knex": "registry:dt/knex#0.0.0+20160526133810",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "mocha": "registry:dt/mocha#2.2.5+20160619032855",
     "mysql": "registry:dt/mysql#0.0.0+20160316155526",
     "node": "registry:env/node#4.0.0+20160507210304",
     "nodemailer": "registry:dt/nodemailer#1.3.2+20160316155526",
