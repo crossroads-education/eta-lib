@@ -25,6 +25,7 @@ export {Logger} from "./lib/classes/Logger";
 // *** helpers ***
 export {HelperFS as fs} from "./lib/helpers/HelperFS";
 export {HelperHttp as http} from "./lib/helpers/HelperHttp";
+export {HelperNavbar as navbar} from "./lib/helpers/HelperNavbar";
 export {HelperObject as object} from "./lib/helpers/HelperObject";
 export {HelperParams as params} from "./lib/helpers/HelperParams";
 export {HelperRedirect as redirect} from "./lib/helpers/HelperRedirect";
