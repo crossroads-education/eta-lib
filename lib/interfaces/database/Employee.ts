@@ -37,6 +37,11 @@ export interface Employee extends eta.Person {
     emergencyRelationship : string;
 
     /**
+    Their hoodie size
+    */
+    hoodie : string;
+
+    /**
     Whether they are an international student
     */
     isInternational : boolean;
