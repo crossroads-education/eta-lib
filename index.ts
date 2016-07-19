@@ -30,11 +30,13 @@ export {HelperNavbar as navbar} from "./lib/helpers/HelperNavbar";
 export {HelperObject as object} from "./lib/helpers/HelperObject";
 export {HelperParams as params} from "./lib/helpers/HelperParams";
 export {HelperRedirect as redirect} from "./lib/helpers/HelperRedirect";
+export {HelperTime as time} from "./lib/helpers/HelperTime";
 
 // *** database helpers ***
 export {HelperAthlete as athlete} from "./lib/helpers/database/HelperAthlete";
 export {HelperCenter as center} from "./lib/helpers/database/HelperCenter";
 export {HelperCourse as course} from "./lib/helpers/database/HelperCourse";
+export {HelperHours as hours} from "./lib/helpers/database/HelperHours";
 export {HelperMetadata as metadata} from "./lib/helpers/database/HelperMetadata";
 export {HelperPermission as permission} from "./lib/helpers/database/HelperPermission";
 export {HelperPerson as person} from "./lib/helpers/database/HelperPerson";
@@ -46,8 +48,12 @@ export {HelperTerm as term} from "./lib/helpers/database/HelperTerm";
 // *** database interfaces ***
 export {Center} from "./lib/interfaces/database/Center";
 export {Course} from "./lib/interfaces/database/Course";
+export {Employee} from "./lib/interfaces/database/Employee";
+export {EmployeeSchedule} from "./lib/interfaces/database/EmployeeSchedule";
 export {PageMetadata} from "./lib/interfaces/database/PageMetadata";
 export {Person} from "./lib/interfaces/database/Person";
+export {Schedule} from "./lib/interfaces/database/Schedule";
+export {ScheduledEmployee} from "./lib/interfaces/database/ScheduledEmployee";
 export {Section} from "./lib/interfaces/database/Section";
 export {Setting} from "./lib/interfaces/database/Setting";
 export {Student} from "./lib/interfaces/database/Student";
@@ -60,3 +66,4 @@ export {IError as DBError} from "mysql";
 export {Model} from "./lib/interfaces/Model";
 export {ModelParams} from "./lib/interfaces/ModelParams";
 export {ModuleConfiguration} from "./lib/interfaces/ModuleConfiguration";
+export {TimeSpan} from "./lib/interfaces/TimeSpan";
