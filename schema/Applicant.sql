@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `Applicant` (
     `evaluate` TINYINT(1) NOT NULL DEFAULT 0,
     `interview` TINYINT(1) NOT NULL DEFAULT 0,
     `hire` TINYINT(1) NOT NULL DEFAULT 0,
-    `notes` TEXT NOT NULL DEFAULT "",
+    `notes` TEXT NOT NULL,
     `workStudy` TINYINT(1) NOT NULL,
     `expectedGraduation` DATE,
-PRIMARY KEY(`id`))
+PRIMARY KEY(`id`));
