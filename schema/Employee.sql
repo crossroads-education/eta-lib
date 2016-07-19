@@ -13,4 +13,5 @@ CREATE TABLE IF NOT EXISTS `Employee` (
     `notes` TEXT,
     `phone` VARCHAR(15),
     `shirt` VARCHAR(4),
+    `hoodie` VARCHAR(4),
 PRIMARY KEY(`id`));
