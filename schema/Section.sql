@@ -9,8 +9,9 @@ CREATE TABLE IF NOT EXISTS `Section` (
     `room` VARCHAR(10),
     `term` INT(8) NOT NULL,
     `totalEnrolled` INT(4) NOT NULL,
-    `professor` CHAR(10) NOT NULL,
+    `professor` CHAR(10),
     `start` TIME NOT NULL,
     `end` TIME NOT NULL,
     `days` VARCHAR(7) NOT NULL,
+UNIQUE KEY(`number`, `term`),
 PRIMARY KEY(`id`));

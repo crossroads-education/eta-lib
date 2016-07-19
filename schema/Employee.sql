@@ -12,5 +12,5 @@ CREATE TABLE IF NOT EXISTS `Employee` (
     `minHours` INT(4) NOT NULL,
     `notes` TEXT,
     `phone` VARCHAR(15),
-    `shirt` CHAR(2),
+    `shirt` VARCHAR(4),
 PRIMARY KEY(`id`));
