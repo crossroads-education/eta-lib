@@ -20,6 +20,7 @@ export interface Configuration {
         port : number;
         secret : string;
         ssl : {
+            ca : string;
             cert : string;
             key : string;
             port : number;
