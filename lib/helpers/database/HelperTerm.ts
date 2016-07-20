@@ -13,7 +13,7 @@ export class HelperTerm {
     */
     public static init() : void {
         HelperTerm.terms = [];
-        eta.db.query("SELECT * FROM `Term` WHERE NOT (`term` LIKE '%5' AND `session` = 1)", [], (err : eta.DBError, rows : any[]) => {
+        eta.db.query("SELECT * FROM Term", [], (err : eta.DBError, rows : any[]) => {
             if (err) {
                 eta.logger.dbError(err);
                 return;
@@ -37,6 +37,9 @@ export class HelperTerm {
     public static getCurrent() : eta.Term {
         let today : number = new Date().getTime();
         for (let i : number = 0; i < HelperTerm.terms.length; i++) {
+            if (HelperTerm.terms[i].term.endsWith("5") && HelperTerm.terms[i].session == "1") { // summer 1 is never current
+                continue;
+            }
             if (HelperTerm.terms[i].start.getTime() < today && HelperTerm.terms[i].end.getTime() >= today) {
                 return eta.object.copy(HelperTerm.terms[i]);
             }
