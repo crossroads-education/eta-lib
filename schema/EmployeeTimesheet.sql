@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS `EmployeeTimesheet` (
     `ipOut` VARCHAR(45),
     `timeIn` DATETIME NOT NULL,
     `timeOut` DATETIME,
-    `center` INT(8) NOT NULL
+    `center` INT(8) NOT NULL,
 PRIMARY KEY(`id`, `timeIn`));
