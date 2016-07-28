@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `Employee` (
     `minHours` INT(4) NOT NULL,
     `notes` TEXT,
     `phone` VARCHAR(15),
-    `shirt` VARCHAR(4),
-    `hoodie` VARCHAR(4),
+    `shirt` VARCHAR(4) NOT NULL,
+    `hoodie` VARCHAR(4) NOT NULL,
+    `mentor` TINYINT(1) NOT NULL, -- mentor semester progression: -1 if not mentor
 PRIMARY KEY(`id`));
