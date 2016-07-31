@@ -17,6 +17,7 @@
     "nodemailer-smtp-transport": "registry:dt/nodemailer-smtp-transport#0.0.0+20160317120654",
     "nodemailer-types": "registry:dt/nodemailer-types#0.0.0+20160317120654",
     "serve-static": "registry:dt/serve-static#0.0.0+20160501131543",
+    "socket.io": "registry:dt/socket.io#1.4.4+20160317120654",
     "stack-trace": "registry:dt/stack-trace#0.0.0+20160316155526"
   },
   "dependencies": {

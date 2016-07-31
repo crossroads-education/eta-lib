@@ -1,6 +1,7 @@
 import * as knexLib from "knex";
 import * as mysql from "mysql";
 import * as nodemailer from "nodemailer";
+import * as socketIO from "socket.io";
 
 // *** Instances ***
 
@@ -14,6 +15,9 @@ export let mail : nodemailer.Transporter;
 // logger
 import {Logger} from "./lib/classes/Logger";
 export let logger : Logger;
+
+// socket.io
+export let io : SocketIO.Server;
 
 // database
 export let db : mysql.IConnection;
