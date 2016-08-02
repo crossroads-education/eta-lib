@@ -7,4 +7,5 @@ CREATE TABLE IF NOT EXISTS `History` (
     `table` TEXT NOT NULL,
     `raw` TINYINT(1) NOT NULL,
     `aux` TEXT NOT NULL,
+    `groupBy` TEXT NOT NULL,
 PRIMARY KEY(`id`));
