@@ -8,7 +8,7 @@ export class Logger {
     private root : string;
 
     public constructor(root : string) {
-        this.root = root;
+        this.root = root.replace(/\\/g, "/");
         try {
             fs.accessSync(this.root + "/logs");
         } catch (ex) {
@@ -17,8 +17,11 @@ export class Logger {
     }
 
     private getCalling() : string {
-        let stack : stackTrace.StackFrame = stackTrace.get()[3];
-        return stack.getFileName().substring(this.root.length).replace(/\\/g, "/") + ":" + stack.getLineNumber();
+        let rootCount : number = this.root.split("/").length;
+        let stack : stackTrace.StackFrame = stackTrace.parse(new Error())[3];
+        let filename : string = stack.getFileName().replace(/\\/g, "/");
+        filename = "/" + filename.split("/").splice(rootCount - 1).join("/");
+        return filename + ":" + stack.getLineNumber();
     }
 
     private log(data : string) : void {
