@@ -28,6 +28,7 @@ export {Logger} from "./lib/classes/Logger";
 export {PermissionUser} from "./lib/classes/PermissionUser";
 
 // *** helpers ***
+export {HelperCrypto as crypto} from "./lib/helpers/HelperCrypto";
 export {HelperFS as fs} from "./lib/helpers/HelperFS";
 export {HelperHttp as http} from "./lib/helpers/HelperHttp";
 export {HelperNavbar as navbar} from "./lib/helpers/HelperNavbar";

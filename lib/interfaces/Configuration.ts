@@ -11,6 +11,9 @@ export interface Configuration {
         service : string;
         url : string;
     };
+    crypto : {
+        password : string;
+    };
     db : DatabaseConnectionInfo;
     dev : {
         use : boolean;
