@@ -34,10 +34,13 @@ export class HelperTerm {
     /**
     Returns whatever term we're currently in, or null if we're in between terms.
     */
-    public static getCurrent() : eta.Term {
+    public static getCurrent(useLongSummer : boolean = false) : eta.Term {
         let today : number = new Date().getTime();
         for (let i : number = 0; i < HelperTerm.terms.length; i++) {
-            if (HelperTerm.terms[i].term.endsWith("5") && HelperTerm.terms[i].session == "1") { // summer 1 is never current
+            if (!useLongSummer && HelperTerm.terms[i].term.endsWith("5") && HelperTerm.terms[i].session == "1") { // summer 1 is never current
+                continue;
+            }
+            if (useLongSummer && HelperTerm.terms[i].term.endsWith("5") && HelperTerm.terms[i].session !== "1") {
                 continue;
             }
             if (HelperTerm.terms[i].start.getTime() < today && HelperTerm.terms[i].end.getTime() >= today) {
