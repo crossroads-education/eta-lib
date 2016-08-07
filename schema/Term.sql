@@ -5,4 +5,5 @@ CREATE TABLE IF NOT EXISTS `Term` (
     `start` DATE NOT NULL,
     `end` DATE NOT NULL,
     `name` VARCHAR(31) NOT NULL,
+UNIQUE KEY(`term`, `session`),
 PRIMARY KEY(`id`));
