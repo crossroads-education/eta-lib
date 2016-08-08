@@ -32,10 +32,9 @@ export class HelperTerm {
     }
 
     /**
-    Returns whatever term we're currently in, or null if we're in between terms.
+    Returns whatever term we're currently in, or the previous term if we're in between terms.
     */
-    public static getCurrent(useLongSummer : boolean = false) : eta.Term {
-        let today : number = new Date().getTime();
+    public static getCurrent(useLongSummer : boolean = false, today : Date = new Date()) : eta.Term {
         for (let i : number = 0; i < HelperTerm.terms.length; i++) {
             if (!useLongSummer && HelperTerm.terms[i].term.endsWith("5") && HelperTerm.terms[i].session == "1") { // summer 1 is never current
                 continue;
@@ -43,10 +42,12 @@ export class HelperTerm {
             if (useLongSummer && HelperTerm.terms[i].term.endsWith("5") && HelperTerm.terms[i].session !== "1") {
                 continue;
             }
-            if (HelperTerm.terms[i].start.getTime() < today && HelperTerm.terms[i].end.getTime() >= today) {
+            if (HelperTerm.terms[i].start.getTime() <= today.getTime() && HelperTerm.terms[i].end.getTime() >= today.getTime()) {
                 return eta.object.copy(HelperTerm.terms[i]);
             }
         }
-        return null;
+        // use last week's day (for in between terms)
+        today.setDate(today.getDate() - 7);
+        return HelperTerm.getCurrent(useLongSummer, today);
     }
 }
