@@ -12,7 +12,11 @@ export class HelperNavbar {
                 continue; // skip when permissions aren't there
             }
             if (data[name].url) { // just a link
-                html += `<li><a href="${baseurl}${data[name].url}">${name}</a></li>\n`;
+                let url : string = data[name].url;
+                if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                    url = baseurl + url;
+                }
+                html += `<li><a href="${url}">${name}</a></li>\n`;
                 continue;
             }
             if (isSubmenu) {
