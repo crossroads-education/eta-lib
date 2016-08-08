@@ -20,6 +20,7 @@ export interface Configuration {
     };
     email : string;
     http : {
+        host : string;
         port : number;
         secret : string;
         ssl : {
