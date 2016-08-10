@@ -31,6 +31,7 @@ export {PermissionUser} from "./lib/classes/PermissionUser";
 export {HelperCrypto as crypto} from "./lib/helpers/HelperCrypto";
 export {HelperFS as fs} from "./lib/helpers/HelperFS";
 export {HelperHttp as http} from "./lib/helpers/HelperHttp";
+export {HelperName as name} from "./lib/helpers/HelperName";
 export {HelperNavbar as navbar} from "./lib/helpers/HelperNavbar";
 export {HelperObject as object} from "./lib/helpers/HelperObject";
 export {HelperParams as params} from "./lib/helpers/HelperParams";
