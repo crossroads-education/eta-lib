@@ -16,6 +16,7 @@ export interface Configuration {
     };
     db : DatabaseConnectionInfo;
     dev : {
+        sudo : string;
         use : boolean;
     };
     email : string;
