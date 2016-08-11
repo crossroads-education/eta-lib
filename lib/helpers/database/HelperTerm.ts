@@ -31,6 +31,30 @@ export class HelperTerm {
         return null;
     }
 
+    public static getClosest(term? : eta.Term, useLongSummer : boolean = false) : eta.Term[] {
+        if (!term) {
+            term = HelperTerm.getCurrent();
+        }
+        let current : number = Number(term.term);
+        let terms : eta.Term[] = [];
+        for (let i : number = current - 5; i <= current + 5; i++) {
+            for (let k : number = 0; k < eta.term.terms.length; k++) {
+                let term : eta.Term = eta.term.terms[k];
+                if (term.term == i.toString()) {
+                    if ((useLongSummer && term.session != "1") ||
+                        (!useLongSummer && term.term.endsWith("5") && term.session == "1")) {
+                        continue;
+                    }
+                    terms.push(eta.object.copy(term));
+                    if (!(!useLongSummer && term.term.endsWith("5"))) {
+                        break;
+                    }
+                }
+            }
+        }
+        return terms;
+    }
+
     /**
     Returns whatever term we're currently in, or the previous term if we're in between terms.
     */
