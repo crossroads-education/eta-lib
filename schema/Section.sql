@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `Section` (
-    `id` INT(8) NOT NULL AUTO_INCREMENT,
+    `id` INT(8) NOT NULL,
     `active` TINYINT(1) NOT NULL,
     `course` INT(8) NOT NULL,
     `creditHours` INT(4) NOT NULL,

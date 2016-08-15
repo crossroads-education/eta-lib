@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `Course` (
-    `id` INT(8) NOT NULL AUTO_INCREMENT,
+    `id` INT(8) NOT NULL,
     `subject` CHAR(6) NOT NULL,
     `number` CHAR(5) NOT NULL,
     `supported` TINYINT(1) NOT NULL,
