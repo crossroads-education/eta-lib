@@ -13,7 +13,7 @@ export class HelperNavbar {
             }
             if (data[name].url) { // just a link
                 let url : string = data[name].url;
-                if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("/")) {
                     url = baseurl + url;
                 }
                 html += `<li><a href="${url}">${name}</a></li>\n`;
