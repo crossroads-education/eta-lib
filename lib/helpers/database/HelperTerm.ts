@@ -70,8 +70,8 @@ export class HelperTerm {
                 return eta.object.copy(HelperTerm.terms[i]);
             }
         }
-        // use last week's day (for in between terms)
-        today.setDate(today.getDate() - 7);
+        // use next week's day (for in between terms)
+        today.setDate(today.getDate() + 7);
         return HelperTerm.getCurrent(useLongSummer, today);
     }
 }
