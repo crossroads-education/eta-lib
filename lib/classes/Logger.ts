@@ -1,5 +1,6 @@
 import "../autoload";
 
+import * as dateFormat from "dateformat";
 import * as fs from "fs";
 import * as mysql from "mysql";
 import * as stackTrace from "stack-trace";
@@ -26,7 +27,7 @@ export class Logger {
 
     private log(data : string) : void {
         let now : Date = new Date();
-        let filename : string = this.root + "/logs/" + now.toLocaleDateString().replace(/\//g, "-") + ".log";
+        let filename : string = this.root + "/logs/" + dateFormat(now, "yyyy-mm-dd") + ".log";
         let msg : string = `(${now.toLocaleTimeString()}) [${this.getCalling()}] ${data}`;
         console.log(msg);
         fs.appendFile(filename, msg + "\n");
