@@ -5,4 +5,7 @@ CREATE TABLE IF NOT EXISTS `EmployeeAllowance` (
     `call1` TINYINT(1) NOT NULL,
     `call2` TINYINT(1) NOT NULL,
     `sick`  TINYINT(1) NOT NULL,
+    `hw1` TINYINT(1) NOT NULL,
+    `hw2` TINYINT(1) NOT NULL,
+    `hw3` TINYINT(1) NOT NULL,
 PRIMARY KEY(`id`, `term`));
