@@ -30,7 +30,11 @@ export class Logger {
         let filename : string = this.root + "/logs/" + dateFormat(now, "yyyy-mm-dd") + ".log";
         let msg : string = `(${now.toLocaleTimeString()}) [${this.getCalling()}] ${data}`;
         console.log(msg);
-        fs.appendFile(filename, msg + "\n");
+        fs.appendFile(filename, msg + "\n", (err : NodeJS.ErrnoException) => {
+            if (err) {
+                console.log("Could not append log to " + filename + ": " + err.message);
+            }
+        });
     }
 
     public dbError(err : mysql.IError) : void {
