@@ -6,4 +6,5 @@ export interface Center {
     address : string;
     phone : string;
     capacity : number;
+    department : number;
 }
