@@ -47,6 +47,7 @@ export {HelperPermission as permission} from "./lib/helpers/database/HelperPermi
 export {HelperPerson as person} from "./lib/helpers/database/HelperPerson";
 export {HelperSection as section} from "./lib/helpers/database/HelperSection";
 export {HelperSetting as setting} from "./lib/helpers/database/HelperSetting";
+export {HelperSignin as signin} from "./lib/helpers/database/HelperSignin";
 export {HelperStudent as student} from "./lib/helpers/database/HelperStudent";
 export {HelperTerm as term} from "./lib/helpers/database/HelperTerm";
 
