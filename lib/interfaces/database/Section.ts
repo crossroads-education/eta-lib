@@ -4,52 +4,52 @@ export interface Section {
     /**
     Unique numeric ID. NOT section number.
     */
-    id : number;
+    id: number;
 
     /**
     What type of course the Section is, (less specific, think square -> rectangle)
     */
-    course : eta.Course;
+    course: eta.Course;
 
     /**
     Not incredibly sure what this signifies, but it's in IU's database for some reason.
     */
-    active : boolean;
+    active: boolean;
 
     /**
     The location of the class.
     */
-    room : string;
+    room: string;
 
     /**
     The max number of people enrolled
     */
-    maximumEnrollment : number;
+    maximumEnrollment: number;
 
     /**
     Students currently enrolled
     */
-    totalEnrollment : number;
+    totalEnrollment: number;
 
     /**
     Credit hours
     */
-    creditHours : number;
+    creditHours: number;
 
     /**
     Section number
     */
-    number : string;
+    number: string;
 
     /**
     Term the section was in
     */
-    term : eta.Term;
+    term: eta.Term;
 
     /**
     Should be WEB or LEC.
     */
-    meetingType : string;
+    meetingType: string;
 
-    professor : string;
+    professor: string;
 }

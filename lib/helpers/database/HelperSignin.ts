@@ -6,7 +6,7 @@ export class HelperSignin {
     Tries to get a Person object by email, username, or user ID.
     Returns null if an error occurred or the person was not found.
     */
-    public static validate(userid : string, callback : (person : eta.Person) => void) : void {
+    public static validate(userid: string, callback: (person: eta.Person) => void): void {
         if (userid.indexOf("@") !== -1) { // email, so non-iu student
             eta.person.getByEmail(userid, callback);
         } else { // probably an IU student
@@ -19,8 +19,8 @@ export class HelperSignin {
     If there are no unfinished visits for today, returns a JSON string of classes
         the student is enrolled in.
     */
-    public static trySignout(userid : string, callback : (result : string | number) => void) : void {
-        let sql : string = `
+    public static trySignout(userid: string, callback: (result: string | number) => void): void {
+        let sql: string = `
             UPDATE
                 Visit
             SET
@@ -29,7 +29,7 @@ export class HelperSignin {
                 DATE(timeIn) = CURDATE() AND
                 student = ? AND
                 ISNULL(timeOut)`;
-        eta.db.query(sql, [userid], (err : eta.DBError, rows : any) => {
+        eta.db.query(sql, [userid], (err: eta.DBError, rows: any) => {
             if (err) {
                 eta.logger.dbError(err);
                 callback(eta.http.InternalError);
@@ -59,7 +59,7 @@ export class HelperSignin {
                     Section.term = ? AND
                     Section.meetingType = 'LEC' AND
                     StudentSection.status != 'D'`;
-            eta.db.query(sql, [userid, eta.term.getCurrent().id], (err : eta.DBError, rows : any[]) => {
+            eta.db.query(sql, [userid, eta.term.getCurrent().id], (err: eta.DBError, rows: any[]) => {
                 if (err) {
                     eta.logger.dbError(err);
                     callback(eta.http.InternalError);

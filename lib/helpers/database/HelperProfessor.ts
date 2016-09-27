@@ -1,8 +1,8 @@
 import * as eta from "../../../index";
 
 export class HelperProfessor {
-    public static getStudents(id : string, callback : (studentSection : eta.StudentSection[]) => void) : void {
-        let query : string = `
+    public static getStudents(id: string, callback: (studentSection: eta.StudentSection[]) => void): void {
+        let query: string = `
         SELECT
             StudentSection.*
         FROM
@@ -11,7 +11,7 @@ export class HelperProfessor {
             Section.professor = ? AND
             StudentSection.section = Section.id
             `;
-        eta.db.query(query, [id], (err : eta.DBError, rows : any []) => {
+        eta.db.query(query, [id], (err: eta.DBError, rows: any[]) => {
             if (err) {
                 eta.logger.dbError(err);
                 callback(null);
@@ -21,8 +21,8 @@ export class HelperProfessor {
         })
     }
 
-    public static getSections(id : string, callback : (sections : eta.Section[]) => void) : void {
-        let query : string = `
+    public static getSections(id: string, callback: (sections: eta.Section[]) => void): void {
+        let query: string = `
         SELECT
             Section.*
         From
@@ -30,7 +30,7 @@ export class HelperProfessor {
         WHERE
             Section.professor = ?
         `;
-        eta.db.query(query, [id], (err : eta.DBError, rows : any []) => {
+        eta.db.query(query, [id], (err: eta.DBError, rows: any[]) => {
             if (err) {
                 eta.logger.dbError(err);
                 callback(null);

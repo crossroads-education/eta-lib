@@ -1,15 +1,15 @@
 export class PermissionUser {
-    public permissions : string[];
-    public constructor(permissions : string[]) {
+    public permissions: string[];
+    public constructor(permissions: string[]) {
         this.permissions = permissions;
     }
 
-    public has(permission : string) : boolean {
-        let permTokens : string[] = permission.split("/");
-        for (let i : number = 0; i < this.permissions.length; i++) {
-            let testTokens : string[] = this.permissions[i].split("/");
-            let length : number = testTokens.length > permTokens.length ? testTokens.length : permTokens.length;
-            for (let k : number = 0; k < length; k++) {
+    public has(permission: string): boolean {
+        let permTokens: string[] = permission.split("/");
+        for (let i: number = 0; i < this.permissions.length; i++) {
+            let testTokens: string[] = this.permissions[i].split("/");
+            let length: number = testTokens.length > permTokens.length ? testTokens.length : permTokens.length;
+            for (let k: number = 0; k < length; k++) {
                 if (permTokens.length <= k || testTokens.length <= k) {
                     break; // not gonna happen
                 }

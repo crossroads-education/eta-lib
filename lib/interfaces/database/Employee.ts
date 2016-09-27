@@ -4,70 +4,70 @@ export interface Employee extends eta.Person {
     /**
     The employee's non-university email, for alternate contact
     */
-    altEmail : string;
+    altEmail: string;
 
     /**
     The name they prefer on their nametag
     */
-    badgeName : string;
+    badgeName: string;
 
     /**
     The biography that will be shown on the staff directory
     */
-    biography : string;
+    biography: string;
 
     /**
     Whether the employee is currently employed
     */
-    current : boolean;
+    current: boolean;
 
     /**
     Their emergency contact's name
     */
-    emergencyName : string;
+    emergencyName: string;
 
     /**
     Their emergency contact's phone number
     */
-    emergencyPhone : string;
+    emergencyPhone: string;
 
     /**
     Their relationship to their emergency contact
     */
-    emergencyRelationship : string;
+    emergencyRelationship: string;
 
     /**
     Their hoodie size
     */
-    hoodie : string;
+    hoodie: string;
 
     /**
     Whether they are an international student
     */
-    isInternational : boolean;
+    isInternational: boolean;
 
     /**
     The maximum number of hours they prefer to work per week
     */
-    maxHours : number;
+    maxHours: number;
 
     /**
     The minimum number of hours they prefer to work per week
     */
-    minHours : number;
+    minHours: number;
 
     /**
     Their notes on their schedule and availability
     */
-    notes : string;
+    notes: string;
 
     /**
     Their phone number
     */
-    phone : string;
+    phone: string;
 
     /**
     Their shirt size
     */
-    shirt : string;
+    shirt: string;
 }

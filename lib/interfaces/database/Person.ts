@@ -5,25 +5,25 @@ export interface Person {
     /**
     Unique student ID
     */
-    id : string;
+    id: string;
 
     /**
     Unique login username
     */
-    username : string;
+    username: string;
 
     /**
     Unique university email
     */
-    email : string;
+    email: string;
 
     /**
     First name
     */
-    firstName : string;
+    firstName: string;
 
     /**
     Last name
     */
-    lastName : string;
+    lastName: string;
 }

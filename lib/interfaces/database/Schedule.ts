@@ -1,4 +1,4 @@
-import {TimeSpan} from "../TimeSpan";
+import { TimeSpan } from "../TimeSpan";
 
 /**
 Correlates with HoursOfOperation table.
@@ -8,21 +8,21 @@ export interface Schedule extends TimeSpan {
     /**
     The center ID this schedule is for
     */
-    location : number;
+    location: number;
 
     /**
     The day of week this schedule covers
     Allowed values: 0 <= day <= 6
     */
-    day : number;
+    day: number;
 
     /**
     The name of the day of week
     */
-    dayName : string;
+    dayName: string;
 
     /**
     The term ID this schedule applies to
     */
-    term : number;
+    term: number;
 }

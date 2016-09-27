@@ -1,4 +1,4 @@
 export interface ModelParams {
-    baseUrl : string;
-    fullUrl : string;
+    baseUrl: string;
+    fullUrl: string;
 }

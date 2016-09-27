@@ -1,9 +1,9 @@
 import * as eta from "../../index";
 
 export class HelperNavbar {
-    public static build(data : any, user : eta.PermissionUser, baseurl : string, isSubmenu : boolean) : string {
-        let html : string = "";
-        let pastFirst : boolean = false;
+    public static build(data: any, user: eta.PermissionUser, baseurl: string, isSubmenu: boolean): string {
+        let html: string = "";
+        let pastFirst: boolean = false;
         for (let name in data) {
             if (name == "permission") {
                 continue;
@@ -12,7 +12,7 @@ export class HelperNavbar {
                 continue; // skip when permissions aren't there
             }
             if (data[name].url) { // just a link
-                let url : string = data[name].url;
+                let url: string = data[name].url;
                 if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("/")) {
                     url = baseurl + url;
                 }

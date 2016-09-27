@@ -1,7 +1,7 @@
 import * as eta from "../../../index";
 
 export class HelperSection {
-    public static builderQuery : string = `SELECT
+    public static builderQuery: string = `SELECT
         \`Section\`.*,
         Course.id AS "cid",
         Course.subject AS "csubject",
@@ -13,8 +13,8 @@ export class HelperSection {
         Course.fee AS "cfee"
     FROM
         StudentSection, Course, Section`;
-    public static get(id : number, callback : (section : eta.Section) => void) : void {
-        let query : string = `
+    public static get(id: number, callback: (section: eta.Section) => void): void {
+        let query: string = `
         SELECT
             *
         FROM
@@ -22,7 +22,7 @@ export class HelperSection {
         WHERE
             id = ?`;
 
-        eta.db.query(query, [id], (err : eta.DBError, rows : any []) => {
+        eta.db.query(query, [id], (err: eta.DBError, rows: any[]) => {
             if (err) {
                 eta.logger.dbError(err);
                 callback(null);
@@ -33,28 +33,28 @@ export class HelperSection {
         })
     }
 
-    public static build(row : any) : eta.Section {
-        return{
-            "course" : {
-                "id" : row.cid,
-                "isSupported" : row.csupported == 1,
-                "center" : row.ccenter,
-                "number" : row.cnumber,
-                "subject" : row.csubject,
-                "tutor" : row.ctutor,
-                "room" : row.croom,
-                "fee" : row.fee
+    public static build(row: any): eta.Section {
+        return {
+            "course": {
+                "id": row.cid,
+                "isSupported": row.csupported == 1,
+                "center": row.ccenter,
+                "number": row.cnumber,
+                "subject": row.csubject,
+                "tutor": row.ctutor,
+                "room": row.croom,
+                "fee": row.fee
             },
-            "id" : row.id,
-            "active" : row.active == 1,
-            "room" : row.room,
-            "maximumEnrollment" : row.maximumEnrollment,
-            "totalEnrollment" : row.totalEnrollment,
-            "creditHours" : row.creditHours,
-            "number" : row.number,
-            "term" : eta.term.get(row.term),
-            "meetingType" : row.meetingType,
-            "professor" : row.professor
+            "id": row.id,
+            "active": row.active == 1,
+            "room": row.room,
+            "maximumEnrollment": row.maximumEnrollment,
+            "totalEnrollment": row.totalEnrollment,
+            "creditHours": row.creditHours,
+            "number": row.number,
+            "term": eta.term.get(row.term),
+            "meetingType": row.meetingType,
+            "professor": row.professor
         };
     }
 }

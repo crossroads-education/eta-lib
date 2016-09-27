@@ -6,4 +6,6 @@ CREATE TABLE IF NOT EXISTS `Applicant` (
     `notes` TEXT NOT NULL,
     `workStudy` TINYINT(1) NOT NULL,
     `expectedGraduation` DATE,
+    `phone` VARCHAR(12) NOT NULL,
+    `altEmail` VARCHAR(63) NOT NULL,
 PRIMARY KEY(`id`));

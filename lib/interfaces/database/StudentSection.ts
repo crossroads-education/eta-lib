@@ -2,9 +2,9 @@ import * as eta from "../../../index";
 
 export interface StudentSection {
 
-    student : string;
+    student: string;
 
-    section : number;
+    section: number;
 
-    dropDate : Date;
+    dropDate: Date;
 }

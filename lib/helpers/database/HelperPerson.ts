@@ -5,10 +5,10 @@ export class HelperPerson {
     /**
     Returns -1 if an error occurred.
     */
-    private static getLastNonIUID(callback : (lastID : number) => void) : void {
+    private static getLastNonIUID(callback: (lastID: number) => void): void {
         // non-IU IDs are prefixed with 'n'
-        let sql : string = `SELECT COUNT(*) AS lastID FROM Person WHERE id LIKE 'n%'`;
-        eta.db.query(sql, [], (err : eta.DBError, rows : any[]) => {
+        let sql: string = `SELECT COUNT(*) AS lastID FROM Person WHERE id LIKE 'n%'`;
+        eta.db.query(sql, [], (err: eta.DBError, rows: any[]) => {
             if (err) {
                 eta.logger.dbError(err);
                 callback(-1);
@@ -21,18 +21,18 @@ export class HelperPerson {
     /**
     Returns null if an error occurred.
     */
-    public static insertNonIU(email : string, firstName : string, lastName : string, callback : (id : string) => void) : void {
-        HelperPerson.getLastNonIUID((lastID : number) => {
+    public static insertNonIU(email: string, firstName: string, lastName: string, callback: (id: string) => void): void {
+        HelperPerson.getLastNonIUID((lastID: number) => {
             if (lastID == -1) {
                 callback(null);
                 return;
             }
-            let sql : string = `
+            let sql: string = `
                 INSERT INTO Person (id, username, email, firstName, lastName)
                 VALUES(?, '', ?, ?, ?)
                 ON DUPLICATE KEY UPDATE id = VALUES(id)`;
-            let id : string = "n" + (lastID + 1);
-            eta.db.query(sql, [id, email, firstName, lastName], (err : eta.DBError, rows : any[]) => {
+            let id: string = "n" + (lastID + 1);
+            eta.db.query(sql, [id, email, firstName, lastName], (err: eta.DBError, rows: any[]) => {
                 if (err) {
                     eta.logger.dbError(err);
                     callback(null);
@@ -43,9 +43,9 @@ export class HelperPerson {
         });
     }
 
-    private static getInternal(moreSql : string, params : any[], callback : (person : eta.Person) => void) : void {
-        let sql : string = "SELECT * FROM `Person` ";
-        eta.db.query(sql + moreSql, params, (err : eta.DBError, rows : any[]) => {
+    private static getInternal(moreSql: string, params: any[], callback: (person: eta.Person) => void): void {
+        let sql: string = "SELECT * FROM `Person` ";
+        eta.db.query(sql + moreSql, params, (err: eta.DBError, rows: any[]) => {
             if (err) {
                 eta.logger.dbError(err);
                 callback(null);
@@ -59,7 +59,7 @@ export class HelperPerson {
     Gets a person by their unique ID.
     Returns null on failure or not found.
     */
-    public static getByID(id : string, callback : (person : eta.Person) => void) : void {
+    public static getByID(id: string, callback: (person: eta.Person) => void): void {
         HelperPerson.getInternal("WHERE `id` = ?", [id], callback);
     }
 
@@ -67,7 +67,7 @@ export class HelperPerson {
     Gets a person by their unique username.
     Returns null on failure or not found.
     */
-    public static getByUsername(username : string, callback : (person : eta.Person) => void) : void {
+    public static getByUsername(username: string, callback: (person: eta.Person) => void): void {
         HelperPerson.getInternal("WHERE `username` = ?", [username], callback);
     }
 
@@ -75,7 +75,7 @@ export class HelperPerson {
     Gets a person by their unique email.
     Returns null on failure or not found.
     */
-    public static getByEmail(email : string, callback : (person : eta.Person) => void) : void {
+    public static getByEmail(email: string, callback: (person: eta.Person) => void): void {
         HelperPerson.getInternal("WHERE `email` = ?", [email], callback);
     }
 
@@ -83,7 +83,7 @@ export class HelperPerson {
     Get a person based on either their username or their id.
     Returns null if they don't exist.
     */
-    public static getByUsernameOrID(username : string, id : string, callback : (person : eta.Person) => void) : void {
+    public static getByUsernameOrID(username: string, id: string, callback: (person: eta.Person) => void): void {
         HelperPerson.getInternal("WHERE `username` = ? OR `id` = ?", [username, id], callback);
     }
 }
