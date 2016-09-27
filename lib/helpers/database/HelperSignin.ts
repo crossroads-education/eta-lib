@@ -1,42 +1,28 @@
 import * as eta from "../../../index";
 
-
 export class HelperSignin {
 
-    public static validate(userid : string, callback : (result : string | number) => void) : void {
-        if (userid.indexOf("@") > -1) {
-            eta.db.query('SELECT id FROM Person WHERE email = ?', [userid], (err : eta.DBError, rows : any[]) => {
-                if (err) {
-                    eta.logger.dbError(err);
-                    callback(eta.http.InternalError);
-                    return;
-                }
-                eta.logger.trace(rows[0].id);
-                eta.person.getByID(rows[0].id, (person: eta.Person) => {
-                    if (!person) {
-                        callback(eta.http.NotFound);
-                        return;
-                    } else {
-                        HelperSignin.signin(person.id, callback);
-                        return;
-                    }
-                })
-            })
+    /**
+    Tries to get a Person object by email, username, or user ID.
+    Returns null if an error occurred or the person was not found.
+    */
+    public static validate(userid : string, callback : (person : eta.Person) => void) : void {
+        if (userid.indexOf("@") !== -1) { // email, so non-iu student
+            eta.person.getByEmail(userid, callback);
+        } else { // probably an IU student
+            eta.person.getByUsernameOrID(userid, userid, callback);
         }
-        eta.person.getByUsernameOrID(userid, userid, (person : eta.Person) => {
-            if (!person) {
-                callback(eta.http.NotFound);
-                return;
-            } else {
-                HelperSignin.signin(person.id, callback);
-                return;
-            }
-        });
     }
 
-    public static signin(userid : string, callback : (result : string | number) => void) : void {
+    /**
+    Signs out if there are any unfinished visits for today.
+    If there are no unfinished visits for today, returns a JSON string of classes
+        the student is enrolled in.
+    */
+    public static trySignout(userid : string, callback : (result : string | number) => void) : void {
         let sql : string = `
-            UPDATE Visit
+            UPDATE
+                Visit
             SET
                 timeOut = NOW()
             WHERE
@@ -49,10 +35,11 @@ export class HelperSignin {
                 callback(eta.http.InternalError);
                 return;
             }
-            if (rows.affectedRows === 1) {
+            if (rows.affectedRows === 1) { // they had already signed in, and are now signed out.
                 callback("false");
                 return;
             }
+            // get classes they're enrolled in
             sql = `
                 SELECT
                     Person.firstName,
