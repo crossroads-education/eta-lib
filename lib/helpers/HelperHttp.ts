@@ -43,7 +43,7 @@ export class HelperHttp {
             "method": method,
             "headers": headers
         };
-        let req = (useSSL ? https : http).request(options, function(res: any) {
+        let req = (<any>(useSSL ? https : http).request)(options, function(res: any) {
             let response: string = "";
             res.setEncoding("utf8");
             res.on("data", function(chunk: string) {
