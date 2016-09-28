@@ -4,6 +4,11 @@ This is just a data structure to represent eta.json.
 */
 export interface ModuleConfiguration {
     /**
+    The name by which the module is indexed.
+    */
+    name: string;
+
+    /**
     The base path a module's pages should be mounted to.
     Preceding and succeeding "/" are expected.
     For example, a path of "/foo/" would make the module's pages accessible at "http://localhost:3000/foo/".

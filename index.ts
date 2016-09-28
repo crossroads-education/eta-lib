@@ -23,6 +23,12 @@ export let io: SocketIO.Server;
 export let db: mysql.IConnection;
 export let knex: knexLib;
 
+// server
+import { ServerConfiguration } from "./lib/interfaces/ServerConfiguration";
+export let server: ServerConfiguration = {
+    "modules": {}
+};
+
 // *** classes ***
 export { Logger } from "./lib/classes/Logger";
 export { PermissionUser } from "./lib/classes/PermissionUser";
