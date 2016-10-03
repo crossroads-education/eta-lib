@@ -42,6 +42,7 @@ export { HelperNavbar as navbar } from "./lib/helpers/HelperNavbar";
 export { HelperObject as object } from "./lib/helpers/HelperObject";
 export { HelperParams as params } from "./lib/helpers/HelperParams";
 export { HelperRedirect as redirect } from "./lib/helpers/HelperRedirect";
+export { HelperSql as sql, ValueResult as SqlValueResult } from "./lib/helpers/HelperSql";
 export { HelperTime as time } from "./lib/helpers/HelperTime";
 
 // *** database helpers ***
@@ -56,6 +57,7 @@ export { HelperSetting as setting } from "./lib/helpers/database/HelperSetting";
 export { HelperSignin as signin } from "./lib/helpers/database/HelperSignin";
 export { HelperStudent as student } from "./lib/helpers/database/HelperStudent";
 export { HelperTerm as term } from "./lib/helpers/database/HelperTerm";
+export { HelperVisit as visit } from "./lib/helpers/database/HelperVisit";
 
 // *** database interfaces ***
 export { Center } from "./lib/interfaces/database/Center";
@@ -70,6 +72,7 @@ export { Setting } from "./lib/interfaces/database/Setting";
 export { Student } from "./lib/interfaces/database/Student";
 export { StudentSection } from "./lib/interfaces/database/StudentSection";
 export { Term } from "./lib/interfaces/database/Term";
+export { Visit } from "./lib/interfaces/database/Visit";
 
 // *** interfaces ***
 export { Configuration } from "./lib/interfaces/Configuration";
@@ -78,3 +81,7 @@ export { Model } from "./lib/interfaces/Model";
 export { ModelParams } from "./lib/interfaces/ModelParams";
 export { ModuleConfiguration } from "./lib/interfaces/ModuleConfiguration";
 export { TimeSpan } from "./lib/interfaces/TimeSpan";
+
+// *** integrations ***
+import * as nexus from "./lib/integration/nexus";
+export { nexus };

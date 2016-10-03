@@ -37,4 +37,10 @@ export interface Configuration {
         port: number;
         secure: boolean;
     };
+    nexus: {
+        api: {
+            key: string;
+            url: string;
+        };
+    };
 }

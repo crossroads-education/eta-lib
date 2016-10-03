@@ -31,6 +31,17 @@ export class HelperTerm {
         return null;
     }
 
+    public static getContaining(date: Date): eta.Term {
+        let time: number = date.getTime();
+        for (let i: number = 0; i < HelperTerm.terms.length; i++) {
+            let term: eta.Term = HelperTerm.terms[i];
+            if (time >= term.start.getTime() && time < term.end.getTime()) {
+                return eta.object.copy(term);
+            }
+        }
+        return null;
+    }
+
     public static getClosest(term?: eta.Term, useLongSummer: boolean = false): eta.Term[] {
         if (!term) {
             term = HelperTerm.getCurrent();

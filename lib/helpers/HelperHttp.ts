@@ -28,7 +28,7 @@ export class HelperHttp {
             argsString = argsString.replace("&", "?"); // This only replaces the first occurrence
         }
         if (!rawUrl.startsWith("http://") && !rawUrl.startsWith("https://")) {
-            rawUrl = "http" + (useSSL ? "s" : "") + "s://" + rawUrl;
+            rawUrl = "http" + (useSSL ? "s" : "") + "://" + rawUrl;
         }
         let url: urllib.Url = urllib.parse(rawUrl);
         let headers: { [key: string]: (string | number) } = {};
@@ -39,7 +39,7 @@ export class HelperHttp {
         let options = {
             "hostname": url.hostname,
             "port": useSSL ? 443 : 80,
-            "path": url.path + (method.toLowerCase() == "post" ? "" : argsString),
+            "path": url.path + (method.toLowerCase() == "post" ? "" : ("?" + argsString)),
             "method": method,
             "headers": headers
         };

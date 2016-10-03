@@ -21,7 +21,7 @@ export class HelperPerson {
     /**
     Returns null if an error occurred.
     */
-    public static insertNonIU(email: string, firstName: string, lastName: string, callback: (id: string) => void): void {
+    public static insertNonIU(username: string, email: string, firstName: string, lastName: string, callback: (id: string) => void): void {
         HelperPerson.getLastNonIUID((lastID: number) => {
             if (lastID == -1) {
                 callback(null);
@@ -29,10 +29,13 @@ export class HelperPerson {
             }
             let sql: string = `
                 INSERT INTO Person (id, username, email, firstName, lastName)
-                VALUES(?, '', ?, ?, ?)
+                VALUES(?, ?, ?, ?, ?)
                 ON DUPLICATE KEY UPDATE id = VALUES(id)`;
             let id: string = "n" + (lastID + 1);
-            eta.db.query(sql, [id, email, firstName, lastName], (err: eta.DBError, rows: any[]) => {
+            if (!username || username === "") {
+                username = id;
+            }
+            eta.db.query(sql, [id, username, email, firstName, lastName], (err: eta.DBError, rows: any[]) => {
                 if (err) {
                     eta.logger.dbError(err);
                     callback(null);
