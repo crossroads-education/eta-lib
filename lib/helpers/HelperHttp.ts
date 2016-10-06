@@ -1,8 +1,10 @@
 import * as eta from "../../index";
+import * as express from "express";
 import * as http from "http";
 import * as https from "https";
 import * as querystring from "querystring";
 import * as urllib from "url";
+import * as ua from "useragent";
 
 export class HelperHttp {
     public static Success: number = 200;
@@ -16,6 +18,10 @@ export class HelperHttp {
     public static Forbidden: number = 403;
     public static NotFound: number = 404;
     public static InternalError: number = 500;
+
+    public static getUserAgent(req: express.Request) {
+        return ua.useragent.parse(req.get("User-Agent"));
+    }
 
     public static request(rawUrl: string, method: string, args: { [key: string]: any }, useSSL: boolean, callback: (code: number, response: string) => void, encodeParams: boolean) {
         let argsString: string = "";
