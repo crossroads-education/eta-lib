@@ -20,7 +20,7 @@ export class HelperHttp {
     public static InternalError: number = 500;
 
     public static getUserAgent(req: express.Request) {
-        return ua.useragent.parse(req.get("User-Agent"));
+        return (<any>ua).parse(req.get("User-Agent"));
     }
 
     public static request(rawUrl: string, method: string, args: { [key: string]: any }, useSSL: boolean, callback: (code: number, response: string) => void, encodeParams: boolean) {
