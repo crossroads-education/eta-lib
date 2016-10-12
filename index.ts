@@ -40,6 +40,7 @@ export { HelperHttp as http } from "./lib/helpers/HelperHttp";
 export { HelperName as name } from "./lib/helpers/HelperName";
 export { HelperNavbar as navbar } from "./lib/helpers/HelperNavbar";
 export { HelperObject as object } from "./lib/helpers/HelperObject";
+export { HelperOracle as oracle } from "./lib/helpers/HelperOracle";
 export { HelperParams as params } from "./lib/helpers/HelperParams";
 export { HelperRedirect as redirect } from "./lib/helpers/HelperRedirect";
 export { HelperSql as sql, ValueResult as SqlValueResult } from "./lib/helpers/HelperSql";

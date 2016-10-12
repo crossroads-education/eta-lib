@@ -43,4 +43,11 @@ export interface Configuration {
             url: string;
         };
     };
+    oracle: {
+        db: {
+            user: string;
+            password: string;
+            connectString: string;
+        }
+    }
 }
