@@ -47,8 +47,8 @@ export class HelperPerson {
     }
 
     private static getInternal(moreSql: string, params: any[], callback: (person: eta.Person) => void): void {
-        let sql: string = "SELECT * FROM `Person` ";
-        eta.db.query(sql + moreSql, params, (err: eta.DBError, rows: any[]) => {
+        let sql: string = "SELECT * FROM `Person` " + moreSql;
+        eta.db.query(sql, params, (err: eta.DBError, rows: any[]) => {
             if (err) {
                 eta.logger.dbError(err);
                 callback(null);
@@ -87,6 +87,14 @@ export class HelperPerson {
     Returns null if they don't exist.
     */
     public static getByUsernameOrID(username: string, id: string, callback: (person: eta.Person) => void): void {
-        HelperPerson.getInternal("WHERE `username` = ? OR `id` = ?", [username, id], callback);
+        if (username == "" && id == "") {
+            callback(null);
+            return;
+        }
+        let sql: string = "WHERE `id` = ?";
+        if (!id.startsWith("n")) { // IU
+            sql += " OR `username` = ?";
+        }
+        HelperPerson.getInternal(sql, [id, username], callback);
     }
 }
