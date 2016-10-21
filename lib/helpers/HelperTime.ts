@@ -41,4 +41,7 @@ export class HelperTime {
         return dateFormat(time, "h:mm tt");
     }
 
+    public static getDateFromTime(time: string): Date {
+        return new Date(HelperTime.getStandardDate(new Date()) + " " + time);
+    }
 }
