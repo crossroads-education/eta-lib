@@ -2,6 +2,10 @@ import * as eta from "../../../index";
 
 export class HelperPerson {
 
+    public static isNonIUID(id: string): boolean {
+        return /^n[0-9]+$/.test(id);
+    }
+
     /**
     Returns -1 if an error occurred.
     */
@@ -92,7 +96,7 @@ export class HelperPerson {
             return;
         }
         let sql: string = "WHERE `id` = ?";
-        if (!id.startsWith("n")) { // IU
+        if (!HelperPerson.isNonIUID(id)) { // IU
             sql += " OR `username` = ?";
         }
         HelperPerson.getInternal(sql, [id, username], callback);
