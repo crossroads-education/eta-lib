@@ -33,6 +33,28 @@ export class HelperTime {
         return dateFormat(date, "yyyy-mm-dd HH:MM:ss");
     }
 
+    /**
+    Returns time formatted for hours of operation
+    `time` must be HH:MM:SS
+    if time != noon:
+        ht (1p, 11a, etc)
+    else:
+        Noon
+    */
+    public static getHoursTime(time: string): string {
+        if (time == "12:00:00") {
+            return "Noon";
+        } else {
+            let hour: number = Number(time.split(":")[0]);
+            // Number("01").toString() returns "1"
+            if (hour < 12) {
+                return hour.toString() + "am";
+            } else {
+                return (hour - 12).toString() + "pm";
+            }
+        }
+    }
+
     public static getShortTime(time: Date): string {
         return dateFormat(time, "h tt");
     }
