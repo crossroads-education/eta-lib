@@ -45,9 +45,17 @@ export interface Configuration {
     };
     oracle: {
         db: {
-            user: string;
-            password: string;
-            connectString: string;
-        }
+            day: {
+                user: string;
+                password: string;
+                connectString: string;
+            };
+            useNight: boolean;
+            night?: {
+                user: string;
+                password: string;
+                connectString: string;
+            };
+        };
     }
 }
