@@ -1,9 +1,22 @@
+import * as eta from "../../index";
 import * as oracledb from "oracledb";
 
 /**
 Helpers to make Oracle DB connections conform to MySQL convention to some extent.
 */
 export class HelperOracle {
+    /**
+    Connects to an oracle database (specified in eta.config) based on the current time.
+    */
+    public static getConnection(callback: (err: Error, conn: oracledb.IConnection) => void): void {
+        let dbConfig: any = eta.config.oracle.db.day;
+        let now: Date = new Date();
+        if (eta.config.oracle.db.useNight && (now.getHours() >= 22 || now.getHours() <= 5)) {
+            dbConfig = eta.config.oracle.db.night;
+        }
+        oracledb.getConnection(dbConfig, callback);
+    }
+
     /**
     Collects all rows from a query into one array without absurd memory allocation.
     Borrowed and modified from https://gist.github.com/bjouhier/f4f991895fbe62ab1972.
