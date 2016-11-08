@@ -2,12 +2,13 @@ import * as eta from "../../../index";
 
 export interface Section {
     /**
-    Unique numeric ID. NOT section number.
+    Unique numeric ID
+    Built by concatenating Term.term and Section.number
     */
     id: number;
 
     /**
-    What type of course the Section is, (less specific, think square -> rectangle)
+    What type of course the Section is
     */
     course: eta.Course;
 
@@ -24,12 +25,12 @@ export interface Section {
     /**
     The max number of people enrolled
     */
-    maximumEnrollment: number;
+    maximumEnrolled: number;
 
     /**
     Students currently enrolled
     */
-    totalEnrollment: number;
+    totalEnrolled: number;
 
     /**
     Credit hours
@@ -51,5 +52,18 @@ export interface Section {
     */
     meetingType: string;
 
+    /**
+    The user ID of the professor (correlates to Person.id)
+    */
     professor: string;
+
+    /**
+    Sum of hours visited for this section
+    */
+    visitDuration: number;
+
+    /**
+    Count of visits for this section
+    */
+    visitCount: number;
 }

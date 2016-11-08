@@ -41,7 +41,7 @@ export class HelperVisit {
             FROM
                 Visit
                     RIGHT JOIN Section ON
-                        Visit.section LIKE CONCAT('%', Section.id, '%')
+                        Visit.section REGEXP Section.id
                     RIGHT JOIN Term ON
                         Section.term = Term.id`;
     }
