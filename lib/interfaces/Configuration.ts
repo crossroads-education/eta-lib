@@ -30,6 +30,7 @@ export interface Configuration {
             key: string;
             port: number;
             use: boolean;
+            redirectPort?: number;
         };
     };
     mail: {

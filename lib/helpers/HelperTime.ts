@@ -13,6 +13,7 @@ export class HelperTime {
         }
         return times;
     }
+
     public static getCurrentDayOfWeek(): number {
         return new Date().getDay();
     }
