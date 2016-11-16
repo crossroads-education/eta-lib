@@ -58,5 +58,11 @@ export interface Configuration {
                 connectString: string;
             };
         };
-    }
+    };
+    wiziq: {
+        onlineCenter: number;
+        rooms: string[];
+        username: string;
+        password: string;
+    };
 }

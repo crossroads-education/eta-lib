@@ -66,6 +66,7 @@ export { Center } from "./lib/interfaces/database/Center";
 export { Course } from "./lib/interfaces/database/Course";
 export { Employee } from "./lib/interfaces/database/Employee";
 export { EmployeeSchedule } from "./lib/interfaces/database/EmployeeSchedule";
+export { HoursOfOperation } from "./lib/interfaces/database/HoursOfOperation";
 export { PageMetadata } from "./lib/interfaces/database/PageMetadata";
 export { Person } from "./lib/interfaces/database/Person";
 export { Schedule } from "./lib/interfaces/database/Schedule";
@@ -87,3 +88,4 @@ export { TimeSpan } from "./lib/interfaces/TimeSpan";
 // *** integrations ***
 import * as nexus from "./lib/integration/nexus";
 export { nexus };
+export { HelperWizIQ as wiziq } from "./lib/helpers/integration/HelperWizIQ";

@@ -14,4 +14,25 @@ export class HelperCenter {
             callback(rows);
         });
     }
+
+    public static getHours(id: number, term: number, callback: (err: Error, hours?: { [key: number]: eta.HoursOfOperation }) => void): void {
+        let sql: string = `
+            SELECT
+                HoursOfOperation.*
+            FROM
+                HoursOfOperation
+            WHERE
+                HoursOfOperation.center = ? AND
+                HoursOfOperation.term = ?`;
+        eta.db.query(sql, [id, term], (err: eta.DBError, rows: any[]) => {
+            if (err) {
+                return callback(err);
+            }
+            let hours: { [key: number]: eta.HoursOfOperation } = {};
+            for (let i: number = 0; i < rows.length; i++) {
+                hours[rows[i].day] = rows[i];
+            }
+            return callback(null, hours);
+        });
+    }
 }

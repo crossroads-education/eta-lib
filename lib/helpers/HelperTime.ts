@@ -6,6 +6,7 @@ export class HelperTime {
     public static span15Minutes: number = 900000;
     public static daysOfWeek: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     public static shortDaysOfWeek: string[] = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+
     public static fillTimes(start: Date, end: Date, interval: number, format: string): string[] {
         let times: string[] = [];
         for (var i: number = start.getTime(); i <= end.getTime(); i += interval) {
@@ -21,8 +22,23 @@ export class HelperTime {
     public static getNameFromDayOfWeek(day: number): string {
         return HelperTime.daysOfWeek[day];
     }
+
     /**
-    Format: YYYY-MM-DD (zero padded)
+    Format: MM/DD/YYYY
+    */
+    public static getAmericanDate(date: Date): string {
+        return dateFormat(date, "mm/dd/yyyy");
+    }
+
+    /**
+    Format: MM/DD/YYYY HH:MM:SS
+    */
+    public static getAmericanDatetime(date: Date): string {
+        return dateFormat(date, "mm/dd/yyyy HH:MM:ss");
+    }
+
+    /**
+    Format: YYYY-MM-DD
     */
     public static getStandardDate(date: Date): string {
         return dateFormat(date, "yyyy-mm-dd");
