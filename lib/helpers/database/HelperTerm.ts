@@ -42,13 +42,13 @@ export class HelperTerm {
         return null;
     }
 
-    public static getClosest(term?: eta.Term, useLongSummer: boolean = false): eta.Term[] {
+    public static getClosest(term?: eta.Term, useLongSummer: boolean = false, years: number = 1): eta.Term[] {
         if (!term) {
             term = HelperTerm.getCurrent();
         }
         let current: number = Number(term.term);
         let terms: eta.Term[] = [];
-        for (let i: number = current - 5; i <= current + 5; i++) {
+        for (let i: number = current - (years * 5); i <= current + (years * 5); i++) {
             for (let k: number = 0; k < eta.term.terms.length; k++) {
                 let term: eta.Term = eta.term.terms[k];
                 if (term.term == i.toString()) {
