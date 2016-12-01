@@ -11,9 +11,6 @@ export interface Configuration {
         service: string;
         url: string;
     };
-    crypto: {
-        password: string;
-    };
     db: DatabaseConnectionInfo;
     dev: {
         sudo: string;
@@ -32,37 +29,5 @@ export interface Configuration {
             use: boolean;
             redirectPort?: number;
         };
-    };
-    mail: {
-        host: string;
-        port: number;
-        secure: boolean;
-    };
-    nexus: {
-        api: {
-            key: string;
-            url: string;
-        };
-    };
-    oracle: {
-        db: {
-            day: {
-                user: string;
-                password: string;
-                connectString: string;
-            };
-            useNight: boolean;
-            night?: {
-                user: string;
-                password: string;
-                connectString: string;
-            };
-        };
-    };
-    wiziq: {
-        onlineCenter: number;
-        rooms: string[];
-        username: string;
-        password: string;
     };
 }
