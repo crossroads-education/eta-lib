@@ -77,7 +77,7 @@ export class HelperTime {
     }
 
     public static getMinuteTime(time: Date): string {
-        return dateFormat(time, "h:mm tt");
+        return dateFormat(time, "h:MMtt");
     }
 
     public static getDateFromTime(time: string): Date {
