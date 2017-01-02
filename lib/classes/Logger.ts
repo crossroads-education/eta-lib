@@ -38,15 +38,25 @@ export class Logger {
     }
 
     public dbError(err: mysql.IError): void {
-        this.log(`[DBERR] (${err.code}) ${err.message}`);
+        this.log(`[ERROR] (${err.code}) ${err.message}`);
     }
 
     public json(obj: any): void {
         this.log(`[JSON] ${JSON.stringify(obj)}`);
     }
 
-    public error(msg: string): void {
-        this.log(`[ERROR] ${msg}`);
+    public error(err: Error | string): void {
+        let message: string = "";
+        if ((<mysql.IError>err).code) { // Special handling since so many MySQL errors get passed
+            let code: string = (<mysql.IError>err).code;
+            message += `(${code}) `;
+        }
+        if (typeof err === "string") {
+            message += err;
+        } else {
+            message += err.message;
+        }
+        this.log(`[ERROR] ${message}`);
     }
 
     public warn(msg: string): void {
