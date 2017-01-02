@@ -19,7 +19,7 @@ export class HelperObject {
 
     public static extend(obj: any, template: any): any {
         for (let i in template) {
-            if (!obj[i]) {
+            if (!obj[i] && obj[i] !== 0) { // handle 0, since !0 == true
                 obj[i] = this.copy(template[i]);
             }
         }
