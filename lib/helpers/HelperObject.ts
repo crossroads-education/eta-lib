@@ -12,8 +12,17 @@ export class HelperObject {
         }
         let temp: any = new obj.constructor();
         for (let key in obj) {
-            temp[key] = HelperObject.copy(obj[key]);
+            temp[key] = this.copy(obj[key]);
         }
         return temp;
+    }
+
+    public static extend(obj: any, template: any): any {
+        for (let i in template) {
+            if (!obj[i]) {
+                obj[i] = this.copy(template[i]);
+            }
+        }
+        return obj;
     }
 }
