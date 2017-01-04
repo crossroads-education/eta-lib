@@ -53,6 +53,7 @@ export { HelperCourse as course } from "./lib/helpers/database/HelperCourse";
 export { HelperMetadata as metadata } from "./lib/helpers/database/HelperMetadata";
 export { HelperPermission as permission } from "./lib/helpers/database/HelperPermission";
 export { HelperPerson as person } from "./lib/helpers/database/HelperPerson";
+export { HelperPosition as position } from "./lib/helpers/database/HelperPosition";
 export { HelperProfessor as professor } from "./lib/helpers/database/HelperProfessor";
 export { HelperSection as section } from "./lib/helpers/database/HelperSection";
 export { HelperSetting as setting } from "./lib/helpers/database/HelperSetting";
