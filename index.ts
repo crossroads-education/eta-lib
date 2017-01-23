@@ -50,6 +50,7 @@ export { HelperTime as time } from "./lib/helpers/HelperTime";
 export { HelperAthlete as athlete } from "./lib/helpers/database/HelperAthlete";
 export { HelperCenter as center } from "./lib/helpers/database/HelperCenter";
 export { HelperCourse as course } from "./lib/helpers/database/HelperCourse";
+export { HelperLogin as login } from "./lib/helpers/database/HelperLogin";
 export { HelperMetadata as metadata } from "./lib/helpers/database/HelperMetadata";
 export { HelperPermission as permission } from "./lib/helpers/database/HelperPermission";
 export { HelperPerson as person } from "./lib/helpers/database/HelperPerson";
