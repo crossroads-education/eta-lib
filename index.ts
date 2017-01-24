@@ -90,3 +90,4 @@ export { TimeSpan } from "./lib/interfaces/TimeSpan";
 // *** integrations ***
 import * as nexus from "./lib/integration/nexus";
 export { nexus };
+export { HelperWizIQ as wiziq } from "./lib/helpers/integration/HelperWizIQ";
