@@ -1,14 +1,19 @@
 import * as eta from "../../../index";
 
 export class HelperCourse {
-    public static get(id: number, callback: (course: eta.Course) => void): void {
-        eta.db.query("SELECT * FROM `Course` WHERE id = ?", [id], (err: eta.DBError, rows: any[]) => {
+    public static get(id: number, callback: (err: Error, course?: eta.Course) => void): void {
+        let sql: string = `
+            SELECT
+                *
+            FROM
+                Course
+            WHERE
+                id = $1`;
+        eta.db.query(sql, [id], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
-                callback(null);
-                return;
+                return callback(err);
             }
-            callback(rows[0]);
+            callback(null, result.rows[0]);
         });
     }
 }

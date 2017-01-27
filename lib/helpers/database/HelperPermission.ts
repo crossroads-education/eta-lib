@@ -2,10 +2,16 @@ import * as eta from "../../../index";
 
 export class HelperPermission {
     public static getUser(userid: string, callback: (user: eta.PermissionUser) => void): void {
-        let sql: string = "SELECT * FROM `UserPermission` WHERE `user` = ?";
-        eta.db.query(sql, [userid], (err: eta.DBError, rows: any[]) => {
+        let sql: string = `
+            SELECT
+                UserPermission.*
+            FROM
+                UserPermission
+            WHERE
+                UserPermission.user = $1`;
+        eta.db.query(sql, [userid], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
+                eta.logger.error(err);
                 callback(null);
                 return;
             }

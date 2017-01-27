@@ -4,14 +4,13 @@ export class HelperCenter {
     /**
     Returns null on failure.
     */
-    public static getAll(callback: (centers: eta.Center[]) => void): void {
-        eta.db.query("SELECT * FROM `Center`", [], (err: eta.DBError, rows: any[]) => {
+    public static getAll(callback: (err: Error, centers?: eta.Center[]) => void): void {
+        let sql: string = "SELECT * FROM Center";
+        eta.db.query(sql, [], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
-                callback(null);
-                return;
+                return callback(err);
             }
-            callback(rows);
+            callback(null, result.rows);
         });
     }
 
@@ -25,20 +24,20 @@ export class HelperCenter {
             WHERE
                 HoursOfOperation.open != '00:00:00' AND
                 HoursOfOperation.close != '00:00:00' AND
-                HoursOfOperation.term = ? AND
-                HoursOfOperation.day = ?`;
-        eta.db.query(sql, [term, day], (err: eta.DBError, rows: any[]) => {
+                HoursOfOperation.term = $1 AND
+                HoursOfOperation.day = $2`;
+        eta.db.query(sql, [term, day], (err: Error, result: eta.QueryResult) => {
             if (err) {
                 return callback(err);
             }
-            if (rows.length == 0) {
+            if (result.rows.length == 0) {
                 return callback(null, null);
             }
             return callback(null, {
                 "term": term,
                 "day": day,
-                "open": rows[0].open,
-                "close": rows[0].close,
+                "open": result.rows[0].open,
+                "close": result.rows[0].close,
                 "center": -1
             });
         });
@@ -55,19 +54,19 @@ export class HelperCenter {
             WHERE
                 HoursOfOperation.open != '00:00:00' AND
                 HoursOfOperation.close != '00:00:00' AND
-                HoursOfOperation.term = ?
+                HoursOfOperation.term = $1
             GROUP BY HoursOfOperation.day`;
-        eta.db.query(sql, [term], (err: Error, rows: any[]) => {
+        eta.db.query(sql, [term], (err: Error, result: eta.QueryResult) => {
             if (err) {
                 return callback(err);
             }
             let hours: { [key: number]: eta.HoursOfOperation } = {};
-            for (let i: number = 0; i < rows.length; i++) {
-                hours[rows[i].day] = {
+            for (let i: number = 0; i < result.rows.length; i++) {
+                hours[result.rows[i].day] = {
                     "term": term,
-                    "day": rows[i].day,
-                    "open": rows[i].open,
-                    "close": rows[i].close,
+                    "day": result.rows[i].day,
+                    "open": result.rows[i].open,
+                    "close": result.rows[i].close,
                     "center": -1
                 };
             }
@@ -85,14 +84,14 @@ export class HelperCenter {
             WHERE
                 HoursOfOperation.open != '00:00:00' AND
                 HoursOfOperation.close != '00:00:00' AND
-                HoursOfOperation.term = ?`;
-        eta.db.query(sql, [term], (err: Error, rows: any[]) => {
+                HoursOfOperation.term = $1`;
+        eta.db.query(sql, [term], (err: Error, result: eta.QueryResult) => {
             if (err) {
                 return callback(err);
             }
             callback(null, {
-                "open": rows[0].open,
-                "close": rows[0].close,
+                "open": result.rows[0].open,
+                "close": result.rows[0].close,
                 "center": -1,
                 "day": -1,
                 "term": term
@@ -107,15 +106,15 @@ export class HelperCenter {
             FROM
                 HoursOfOperation
             WHERE
-                HoursOfOperation.center = ? AND
-                HoursOfOperation.term = ?`;
-        eta.db.query(sql, [id, term], (err: eta.DBError, rows: any[]) => {
+                HoursOfOperation.center = $1 AND
+                HoursOfOperation.term = $2`;
+        eta.db.query(sql, [id, term], (err: Error, result: eta.QueryResult) => {
             if (err) {
                 return callback(err);
             }
             let hours: { [key: number]: eta.HoursOfOperation } = {};
-            for (let i: number = 0; i < rows.length; i++) {
-                hours[rows[i].day] = rows[i];
+            for (let i: number = 0; i < result.rows.length; i++) {
+                hours[result.rows[i].day] = result.rows[i];
             }
             return callback(null, hours);
         });
