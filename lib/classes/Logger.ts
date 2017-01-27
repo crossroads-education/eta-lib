@@ -2,7 +2,6 @@ import "../autoload";
 
 import * as dateFormat from "dateformat";
 import * as fs from "fs";
-import * as mysql from "mysql";
 import * as stackTrace from "stack-trace";
 
 export class Logger {
@@ -37,20 +36,12 @@ export class Logger {
         });
     }
 
-    public dbError(err: mysql.IError): void {
-        this.log(`[ERROR] (${err.code}) ${err.message}`);
-    }
-
     public json(obj: any): void {
         this.log(`[JSON] ${JSON.stringify(obj)}`);
     }
 
     public error(err: Error | string): void {
         let message: string = "";
-        if ((<mysql.IError>err).code) { // Special handling since so many MySQL errors get passed
-            let code: string = (<mysql.IError>err).code;
-            message += `(${code}) `;
-        }
         if (typeof err === "string") {
             message += err;
         } else {

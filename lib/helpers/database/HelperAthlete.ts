@@ -1,45 +1,38 @@
 import * as eta from "../../../index";
 
 export class HelperAthlete {
-    /**
-    Returns null if an error occurred
-    */
-    public static isDirector(id: string, callback: (isAthleteDirector: boolean) => void): void {
+    public static isDirector(id: string, callback: (err: Error, isAthleteDirector?: boolean) => void): void {
         let sql: string = `
             SELECT
-                *
+                AthleteDirector.*
             FROM
                 AthleteDirector
             WHERE
-                id = ?`;
-        eta.db.query(sql, [id], (err: eta.DBError, rows: any[]) => {
+                AthleteDirector.id = $1`;
+        eta.db.query(sql, [id], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
-                callback(null);
-                return;
+                return callback(err);
             }
-            callback(rows.length != 0);
+            callback(null, result.rows.length != 0);
         });
     }
 
     /**
-    Returns null if they're not an athlete or a database error occurs
+    Returns null if they're not an athlete
     */
-    public static isAthlete(id: string, callback: (isAthlete: boolean) => void): void {
+    public static isAthlete(id: string, callback: (err: Error, isAthlete?: boolean) => void): void {
         let sql: string = `
             SELECT
-                *
+                Athlete.*
             FROM
                 Athlete
             WHERE
-                id = ?`;
-        eta.db.query(sql, [id], (err: eta.DBError, rows: any[]) => {
+                Athlete.id = $1`;
+        eta.db.query(sql, [id], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
-                callback(null);
-                return;
+                return callback(err);
             }
-            callback(rows[0]);
+            callback(null, result.rows.length > 0 ? result.rows[0] : null);
         });
     }
 }

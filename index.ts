@@ -1,6 +1,6 @@
 import * as knexLib from "knex";
-import * as mysql from "mysql";
 import * as nodemailer from "nodemailer";
+import * as pg from "pg";
 import * as socketIO from "socket.io";
 
 // *** Instances ***
@@ -20,8 +20,9 @@ export let logger: Logger;
 export let io: SocketIO.Server;
 
 // database
-export let db: mysql.IConnection;
+export let db: pg.Pool;
 export let knex: knexLib;
+export { QueryResult } from "pg";
 
 // server
 import { ServerConfiguration } from "./lib/interfaces/ServerConfiguration";
@@ -80,7 +81,6 @@ export { Visit } from "./lib/interfaces/database/Visit";
 
 // *** interfaces ***
 export { Configuration } from "./lib/interfaces/Configuration";
-export { IError as DBError } from "mysql";
 export { Model } from "./lib/interfaces/Model";
 export { ModelParams } from "./lib/interfaces/ModelParams";
 export { ModuleConfiguration } from "./lib/interfaces/ModuleConfiguration";
