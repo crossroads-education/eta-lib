@@ -1,7 +1,7 @@
 import * as eta from "../../../index";
 
 export class HelperProfessor {
-    public static getStudentSections(id: string, callback: (studentSections: eta.StudentSection[]) => void): void {
+    public static getStudentSections(id: string, callback: (err: Error, studentSections?: eta.StudentSection[]) => void): void {
         let query: string = `
             SELECT
                 StudentSection.section,
@@ -14,18 +14,16 @@ export class HelperProfessor {
                     LEFT JOIN Person ON
                         StudentSection.student = Person.id
             WHERE
-                Section.professor = ?`;
-        eta.db.query(query, [id], (err: eta.DBError, rows: any[]) => {
+                Section.professor = $1`;
+        eta.db.query(query, [id], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
-                callback(null);
-                return;
+                return callback(err);
             }
-            callback(rows);
+            return callback(null, result.rows);
         })
     }
 
-    public static getSections(id: string, callback: (sections: eta.Section[]) => void): void {
+    public static getSections(id: string, callback: (err: Error, sections?: eta.Section[]) => void): void {
         let query: string = `
             SELECT
                 Section.*
@@ -33,16 +31,14 @@ export class HelperProfessor {
                 Section
             WHERE
                 Section.professor = ?`;
-        eta.db.query(query, [id], (err: eta.DBError, rows: any[]) => {
+        eta.db.query(query, [id], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
-                callback(null);
-                return;
+                return callback(err);
             }
-            for (let i: number = 0; i < rows.length; i++) {
-                rows[i].term = eta.object.copy(eta.term.get(rows[i].term));
+            for (let i: number = 0; i < result.rows.length; i++) {
+                result.rows[i].term = eta.object.copy(eta.term.get(result.rows[i].term));
             }
-            callback(rows);
+            callback(null, result.rows);
         })
     }
 

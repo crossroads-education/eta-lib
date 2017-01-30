@@ -2,56 +2,41 @@ import * as eta from "../../../index";
 
 import * as nexus from "../../integration/nexus";
 
-let levelCenters: { [key: number]: eta.Center };
-
-/**
-For level-center mapping
-*/
-export function init(): void {
+export function getLevels(callback: (err: Error, levels?: nexus.Level[]) => void): void {
     let sql: string = `
         SELECT
-            Center.*,
-            NexusLevelCenter.level
+            NexusLevel.*
         FROM
-            NexusLevelCenter
-                LEFT JOIN Center ON
-                    NexusLevelCenter.center = Center.id`;
-    eta.db.query(sql, [], (err: eta.DBError, rows: any[]) => {
-        levelCenters = {};
+            NexusLevel`;
+    eta.db.query(sql, [], (err: Error, result: eta.QueryResult) => {
         if (err) {
-            eta.logger.dbError(err);
-            return;
+            return callback(err);
         }
-        for (let i: number = 0; i < rows.length; i++) {
-            levelCenters[rows[i].level] = eta.object.copy(rows[i]);
-        }
+        callback(null, result.rows);
     });
 }
 
-export function getCenterFromLevel(level: number): eta.Center {
-    return eta.object.copy(levelCenters[level]);
-}
-
-export function checkPerson(nexusPerson: nexus.Person, callback: (person: eta.Person) => void): void {
-    eta.person.getByUsername(nexusPerson.casUsername, (person: eta.Person) => {
+export function checkPerson(nexusPerson: nexus.Person, callback: (err: Error, person?: eta.Person) => void): void {
+    eta.person.getByUsername(nexusPerson.casUsername, (err: Error, person: eta.Person) => {
+        if (err) {
+            return callback(err);
+        }
         if (person) {
-            callback(person);
-            return;
+            return callback(null, person);
         }
         // need to insert a non-IU
         let username: string = nexusPerson.casUsername ? nexusPerson.casUsername : "";
-        eta.person.insertNonIU(username, nexusPerson.email, nexusPerson.firstName, nexusPerson.lastName, (id: string) => {
-            if (!id) {
-                callback(null);
-            } else {
-                callback({
-                    "firstName": nexusPerson.firstName,
-                    "lastName": nexusPerson.lastName,
-                    "email": nexusPerson.email,
-                    "username": username,
-                    "id": id
-                });
+        eta.person.insertNonIU(username, nexusPerson.email, nexusPerson.firstName, nexusPerson.lastName, (err: Error, id: string) => {
+            if (err) {
+                return callback(err);
             }
+            callback(null, {
+                "firstName": nexusPerson.firstName,
+                "lastName": nexusPerson.lastName,
+                "email": nexusPerson.email,
+                "username": username,
+                "id": id
+            });
         });
     });
 }
@@ -61,7 +46,7 @@ export function getVisits(start: Date, end: Date, callback: (visits: nexus.Visit
         "start": Math.floor(start.getTime() / 1000),
         "end": Math.floor(end.getTime() / 1000)
     }, (rawVisits: any) => {
-        if (rawVisits == null) {
+        if (rawVisits === null || rawVisits === "") {
             callback(null);
             return;
         }
@@ -86,7 +71,7 @@ export function getVisits(start: Date, end: Date, callback: (visits: nexus.Visit
     });
 }
 
-function getEndpoint(url: string, params: { [key: string]: string | number }, callback: (data: any) => void): void {
+export function getEndpoint(url: string, params: { [key: string]: string | number }, callback: (data: any) => void): void {
     params["apiKey"] = eta.config.nexus.api.key;
     url = eta.config.nexus.api.url + url;
     eta.http.request(url, "GET", params, true, (code: number, response: string) => {
@@ -100,7 +85,7 @@ function getEndpoint(url: string, params: { [key: string]: string | number }, ca
         try {
             data = JSON.parse(response);
         } catch (ex) {
-            callback(null);
+            callback("");
             return;
         }
         callback(data);

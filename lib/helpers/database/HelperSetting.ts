@@ -4,16 +4,16 @@ export class HelperSetting {
     public static settings: { [key: string]: eta.Setting[] };
     public static init(): void {
         HelperSetting.settings = {};
-        eta.db.query("SELECT * FROM `Setting`", [], (err: eta.DBError, rows: eta.Setting[]) => {
+        eta.db.query("SELECT * FROM Setting", [], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
+                eta.logger.error(err);
                 return;
             }
-            for (let i: number = 0; i < rows.length; i++) {
-                if (!HelperSetting.settings[rows[i].page]) {
-                    HelperSetting.settings[rows[i].page] = [];
+            for (let i: number = 0; i < result.rows.length; i++) {
+                if (!HelperSetting.settings[result.rows[i].page]) {
+                    HelperSetting.settings[result.rows[i].page] = [];
                 }
-                HelperSetting.settings[rows[i].page].push(rows[i]);
+                HelperSetting.settings[result.rows[i].page].push(result.rows[i]);
             }
         });
     }
@@ -35,10 +35,15 @@ export class HelperSetting {
         return HelperSetting.settings[page];
     }
 
-    public static set(page: string, name: string, value: string, type: string, callback: (success: boolean) => void): void {
-        let sql: string = "INSERT INTO `Setting` (`page`, `name`, `value`, `type`) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE `value` = ?, `type` = ?";
-        eta.db.query(sql, [page, name, value, type, value, type], (err: eta.DBError, rows: any[]) => {
-            callback(!err);
+    public static set(page: string, name: string, value: string, type: string, callback: (err: Error) => void): void {
+        let sql: string = `
+            INSERT INTO Setting (page, name, value, type)
+            VALUES (?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE
+                value = VALUES(value),
+                type = VALUES(type)`;
+        eta.db.query(sql, [page, name, value, type], (err: Error, result: eta.QueryResult) => {
+            callback(err);
         });
     }
 }

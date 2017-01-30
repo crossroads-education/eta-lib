@@ -13,12 +13,13 @@ export class HelperTerm {
     */
     public static init(): void {
         HelperTerm.terms = [];
-        eta.db.query("SELECT * FROM Term", [], (err: eta.DBError, rows: any[]) => {
+        let sql: string = "SELECT * FROM Term";
+        eta.db.query(sql, [], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
+                eta.logger.error(err);
                 return;
             }
-            HelperTerm.terms = rows;
+            HelperTerm.terms = result.rows;
         });
     }
 
