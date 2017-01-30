@@ -49,18 +49,18 @@ export class HelperMetadata {
     /**
     Sets a metadata value by key, relating to a page.
     */
-    public static set(page: string, key: string, value: string, alt: string, callback?: (success: boolean) => void): void {
+    public static set(page: string, key: string, value: string, alt: string, callback?: (err: Error, success?: boolean) => void): void {
         let sql: string = `
             INSERT INTO PageMetadata (page, key, value, alt)
             VALUES ($1, $2, $3, $4)
             ON DUPLICATE KEY UPDATE
-                value = $5,
-                alt = $6`;
-        eta.db.query(sql, [page, key, value, alt, value, alt], (err: Error, result: eta.QueryResult) => {
+                value = VALUES(value),
+                alt = VALUES(alt)`;
+        eta.db.query(sql, [page, key, value, alt], (err: Error, result: eta.QueryResult) => {
             if (err) {
                 return callback(err);
             }
-            callback(true);
+            callback(null, true);
         });
     }
 }

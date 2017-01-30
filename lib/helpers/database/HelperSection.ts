@@ -20,22 +20,20 @@ export class HelperSection {
                     Section.course = Course.id
         `;
 
-    private static get(moreSql: string, params: any[], callback: (sections: eta.Section[]) => void): void {
-        eta.db.query(HelperSection.builderQuery + moreSql, params, (err: eta.DBError, rows: any[]) => {
+    private static get(moreSql: string, params: any[], callback: (err: Error, sections?: eta.Section[]) => void): void {
+        eta.db.query(HelperSection.builderQuery + moreSql, params, (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
-                callback(null);
-                return;
+                return callback(err);
             }
             let sections: eta.Section[] = [];
-            for (let i: number = 0; i < rows.length; i++) {
-                sections.push(HelperSection.build(rows[i]));
+            for (let i: number = 0; i < result.rows.length; i++) {
+                sections.push(HelperSection.build(result.rows[i]));
             }
-            callback(sections);
+            callback(null, sections);
         });
     }
 
-    private static getWithVisits(visitWhere: string, moreSql: string, params: any[], callback: (sections: eta.Section[]) => void): void {
+    private static getWithVisits(visitWhere: string, moreSql: string, params: any[], callback: (err: Error, sections?: eta.Section[]) => void): void {
         let sql: string = `
             LEFT JOIN (
                 SELECT
@@ -54,15 +52,18 @@ export class HelperSection {
         HelperSection.get(sql + moreSql, params, callback);
     }
 
-    public static getByProfessor(userid: string, callback: (sections: eta.Section[]) => void): void {
-        let whereSql: string = "WHERE Section.professor = ?";
+    public static getByProfessor(userid: string, callback: (err: Error, sections?: eta.Section[]) => void): void {
+        let whereSql: string = "WHERE Section.professor = $1";
         HelperSection.getWithVisits(whereSql, whereSql, [userid, userid], callback);
     }
 
-    public static getByID(id: string, callback: (section: eta.Section) => void): void {
-        let whereSql: string = "WHERE Section.id = ?";
-        HelperSection.getWithVisits(whereSql, whereSql, [id, id], (sections: eta.Section[]) => {
-            callback(sections[0]);
+    public static getByID(id: string, callback: (err: Error, section?: eta.Section) => void): void {
+        let whereSql: string = "WHERE Section.id = $1";
+        HelperSection.getWithVisits(whereSql, whereSql, [id, id], (err: Error, sections?: eta.Section[]) => {
+            if (err) {
+                return callback(err);
+            }
+            callback(null, sections[0]);
         });
     }
 

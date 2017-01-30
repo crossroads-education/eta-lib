@@ -13,20 +13,21 @@ interface PseudoVisit {
 }
 
 export class HelperVisit {
-    public static insert(visits: eta.Visit[]): void {
+    public static insert(visits: eta.Visit[], callback: (err: Error) => void): void {
         if (visits.length === 0) {
             eta.logger.trace("Visits are empty.");
-            return;
+            return callback(null);
         }
         let values: eta.SqlValueResult = eta.sql.getInsertMany(visits, true);
         let sql: string = `
             INSERT INTO Visit ${values.columns}
             VALUES ${values.sql}
             ON DUPLICATE KEY UPDATE timeOut = VALUES(timeOut)`;
-        eta.db.query(sql, values.params, (err: eta.DBError, rows: any[]) => {
+        eta.db.query(sql, values.params, (err: Error, rows: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
+                return callback(err);
             }
+            callback(null);
         });
     }
 

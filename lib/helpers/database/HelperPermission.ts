@@ -1,7 +1,7 @@
 import * as eta from "../../../index";
 
 export class HelperPermission {
-    public static getUser(userid: string, callback: (user: eta.PermissionUser) => void): void {
+    public static getUser(userid: string, callback: (err: Error, user?: eta.PermissionUser) => void): void {
         let sql: string = `
             SELECT
                 UserPermission.*
@@ -16,8 +16,8 @@ export class HelperPermission {
                 return;
             }
             let permissions: string[] = [];
-            for (let i: number = 0; i < rows.length; i++) {
-                permissions.push(rows[i].permission);
+            for (let i: number = 0; i < result.rows.length; i++) {
+                permissions.push(result.rows[i].permission);
             }
             sql = `
                 SELECT DISTINCT
@@ -30,23 +30,21 @@ export class HelperPermission {
                             Position.category = PositionPermission.position OR
                             PositionPermission.position = "ALL"
                 WHERE
-                    EmployeePosition.id = ? AND
+                    EmployeePosition.id = $1 AND
                     EmployeePosition.start <= CURDATE() AND
                     (
                         ISNULL(EmployeePosition.end) OR
                         EmployeePosition.end >= CURDATE()
                     )`;
-            eta.db.query(sql, [userid], (err: eta.DBError, rows: any[]) => {
+            eta.db.query(sql, [userid], (err: Error, result: eta.QueryResult) => {
                 if (err) {
-                    eta.logger.dbError(err);
-                    callback(null);
-                    return;
+                    return callback(err);
                 }
-                for (let i: number = 0; i < rows.length; i++) {
-                    permissions.push(rows[i].permission);
+                for (let i: number = 0; i < result.rows.length; i++) {
+                    permissions.push(result.rows[i].permission);
                 }
                 let user: eta.PermissionUser = new eta.PermissionUser(permissions);
-                callback(user);
+                callback(null, user);
             });
         });
     }

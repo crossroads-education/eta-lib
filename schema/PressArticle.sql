@@ -1,6 +1,6 @@
-CREATE TABLE IF NOT EXISTS `PressArticle` (
-    `id` INT(8) NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(255) NOT NULL,
-    `url` VARCHAR(255) NOT NULL,
-    `body` TEXT NOT NULL,
-PRIMARY KEY(`id`));
+CREATE TABLE IF NOT EXISTS "PressArticle" (
+    "id" INT(8) NOT NULL AUTO_INCREMENT,
+    "name" VARCHAR(255) NOT NULL,
+    "url" VARCHAR(255) NOT NULL,
+    "body" TEXT NOT NULL,
+PRIMARY KEY("id"));

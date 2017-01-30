@@ -2,7 +2,7 @@ import * as eta from "../../../index";
 
 export class HelperStudent {
 
-    public static get(id: string, callback: (student: eta.Student) => void): void {
+    public static get(id: string, callback: (err: Error, student?: eta.Student) => void): void {
         let query: string = eta.section.builderQuery + `
                 LEFT JOIN (SELECT 0 AS count, 0 AS duration) VisitCount ON 1
                 LEFT JOIN StudentSection ON
@@ -10,18 +10,16 @@ export class HelperStudent {
             WHERE
                 StudentSection.student = ? AND
                 StudentSection.status = 'E'`;
-        eta.db.query(query, [id], (err: eta.DBError, rows: any[]) => {
+        eta.db.query(query, [id], (err: Error, result: eta.QueryResult) => {
             if (err) {
-                eta.logger.dbError(err);
-                callback(null);
-                return;
+                return callback(err);
             }
-            for (let i in rows) {
-                rows[i] = eta.section.build(rows[i]);
+            for (let i: number = 0; i < result.rows.length; i++) {
+                result.rows[i] = eta.section.build(result.rows[i]);
             }
-            callback({
+            callback(null, {
                 "id": id,
-                "sections": rows
+                "sections": result.rows
             });
         });
     }
