@@ -12,7 +12,6 @@ export class HelperTerm {
     Updates `this.terms` with all data in the Term table.
     */
     public static init(): void {
-        HelperTerm.terms = [];
         let sql: string = "SELECT * FROM Term";
         eta.db.query(sql, [], (err: Error, result: eta.QueryResult) => {
             if (err) {
@@ -79,6 +78,7 @@ export class HelperTerm {
                 continue;
             }
             if (HelperTerm.terms[i].start.getTime() <= today.getTime() && HelperTerm.terms[i].end.getTime() >= today.getTime()) {
+                eta.logger.json(HelperTerm.terms[i]);
                 return eta.object.copy(HelperTerm.terms[i]);
             }
         }

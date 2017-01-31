@@ -38,7 +38,7 @@ export class HelperSetting {
     public static set(page: string, name: string, value: string, type: string, callback: (err: Error) => void): void {
         let sql: string = `
             INSERT INTO Setting (page, name, value, type)
-            VALUES (?, ?, ?, ?)
+            VALUES ($1, $2, $3, $4)
             ON DUPLICATE KEY UPDATE
                 value = VALUES(value),
                 type = VALUES(type)`;

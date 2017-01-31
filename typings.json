@@ -16,7 +16,7 @@
     "nodemailer-direct-transport": "registry:dt/nodemailer-direct-transport#0.0.0+20160317120654",
     "nodemailer-smtp-transport": "registry:dt/nodemailer-smtp-transport#0.0.0+20160317120654",
     "nodemailer-types": "registry:dt/nodemailer-types#0.0.0+20160317120654",
-    "oracledb": "registry:dt/oracledb#1.5.0+20160728143751",
+    "pg-types/index": "registry:dt/pg-types/index#1.11.0+20161119044246",
     "serve-static": "registry:dt/serve-static#0.0.0+20160501131543",
     "soap": "registry:dt/soap#0.0.0+20160830123121",
     "socket.io": "registry:dt/socket.io#1.4.4+20160317120654",
@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "dateformat": "registry:npm/dateformat#1.0.0+20160616145831",
-    "simple-git": "registry:npm/simple-git#1.47.0+20160817053034",
     "pg": "registry:dt/pg#6.1.0+20170119180538",
+    "simple-git": "registry:npm/simple-git#1.47.0+20160817053034",
     "useragent": "registry:npm/useragent#2.1.8+20160307004256"
   }
 }

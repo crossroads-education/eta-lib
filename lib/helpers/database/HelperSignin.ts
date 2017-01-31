@@ -34,7 +34,7 @@ export class HelperSignin {
                 Visit.timeOut = NOW()
             WHERE
                 DATE(Visit.timeIn) = CURDATE() AND
-                Visit.student = ? AND
+                Visit.student = $1 AND
                 ISNULL(Visit.timeOut)`;
         eta.db.query(sql, [userid], (err: Error, rows: any) => {
             if (err) {
@@ -59,8 +59,8 @@ export class HelperSignin {
                         LEFT JOIN Person ON
                             StudentSection.student = Person.id
                 WHERE
-                    StudentSection.student = ? AND
-                    Section.term = ? AND
+                    StudentSection.student = $1 AND
+                    Section.term = $2 AND
                     Section.meetingType = 'LEC' AND
                     StudentSection.status != 'D'`;
             eta.db.query(sql, [userid, eta.term.getCurrent().id], (err: Error, result: eta.QueryResult) => {

@@ -8,7 +8,7 @@ export class HelperStudent {
                 LEFT JOIN StudentSection ON
                     Section.id = StudentSection.section
             WHERE
-                StudentSection.student = ? AND
+                StudentSection.student = $1 AND
                 StudentSection.status = 'E'`;
         eta.db.query(query, [id], (err: Error, result: eta.QueryResult) => {
             if (err) {

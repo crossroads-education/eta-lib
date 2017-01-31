@@ -10,7 +10,7 @@ export class HelperObject {
         if (obj instanceof Date) {
             return new Date(obj.toISOString());
         }
-        let temp: any = new obj.constructor();
+        let temp: any = obj.constructor.name === "anonymous" ? {} : new obj.constructor();
         for (let key in obj) {
             temp[key] = this.copy(obj[key]);
         }
