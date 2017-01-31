@@ -26,6 +26,7 @@
     "dateformat": "registry:npm/dateformat#1.0.0+20160616145831",
     "pg": "registry:dt/pg#6.1.0+20170119180538",
     "simple-git": "registry:npm/simple-git#1.47.0+20160817053034",
+    "pg": "registry:dt/pg#6.1.0+20170119180538",
     "useragent": "registry:npm/useragent#2.1.8+20160307004256"
   }
 }
