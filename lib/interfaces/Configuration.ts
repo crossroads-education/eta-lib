@@ -64,5 +64,6 @@ export interface Configuration {
         rooms: string[];
         username: string;
         password: string;
+        use: boolean;
     };
 }
