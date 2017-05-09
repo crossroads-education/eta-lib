@@ -1,5 +1,3 @@
-import * as site from "../autoload";
-
 import * as eta from "../../index";
 import * as express from "express";
 

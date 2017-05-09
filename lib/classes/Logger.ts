@@ -1,5 +1,3 @@
-import "../autoload";
-
 import * as dateFormat from "dateformat";
 import * as fs from "fs";
 import * as mysql from "mysql";
